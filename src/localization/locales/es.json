@@ -1,0 +1,80 @@
+{
+  "app": {
+    "name": "CityRide",
+    "tagline": "Viajes en minibús, simplificados."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "back": "Atrás",
+    "email": "Correo",
+    "password": "Contraseña",
+    "phone": "Número de teléfono",
+    "name": "Nombre completo",
+    "send": "Enviar",
+    "retry": "Reintentar"
+  },
+  "auth": {
+    "loginTitle": "Bienvenido de nuevo",
+    "loginSubtitle": "Inicia sesión para continuar",
+    "signupTitle": "Crea tu cuenta",
+    "signupSubtitle": "Únete a CityRide en segundos",
+    "dontHaveAccount": "¿No tienes cuenta?",
+    "haveAccount": "¿Ya tienes cuenta?",
+    "signUp": "Registrarse",
+    "signIn": "Iniciar sesión",
+    "role": "Soy",
+    "passenger": "Pasajero",
+    "driver": "Conductor"
+  },
+  "home": {
+    "title": "¿A dónde vas?",
+    "requestRide": "Solicitar viaje",
+    "recent": "Viajes recientes"
+  },
+  "booking": {
+    "title": "Solicitar viaje",
+    "pickup": "Punto de recogida",
+    "destination": "Destino",
+    "fare": "Tarifa estimada",
+    "confirm": "Confirmar solicitud",
+    "requested": "Viaje solicitado"
+  },
+  "history": {
+    "title": "Historial de viajes",
+    "empty": "Aún no hay viajes"
+  },
+  "details": {
+    "title": "Detalles del viaje",
+    "status": "Estado",
+    "passenger": "Pasajero",
+    "driver": "Conductor",
+    "accept": "Aceptar viaje",
+    "start": "Iniciar viaje",
+    "complete": "Completar",
+    "cancel": "Cancelar viaje"
+  },
+  "driver": {
+    "title": "Solicitudes disponibles",
+    "empty": "No hay solicitudes cercanas"
+  },
+  "profile": {
+    "title": "Perfil",
+    "role": "Rol",
+    "settings": "Ajustes",
+    "signOut": "Cerrar sesión"
+  },
+  "settings": {
+    "title": "Ajustes",
+    "language": "Idioma",
+    "theme": "Apariencia"
+  },
+  "status": {
+    "requested": "Solicitado",
+    "accepted": "Aceptado",
+    "in_progress": "En curso",
+    "completed": "Completado",
+    "cancelled": "Cancelado"
+  }
+}
