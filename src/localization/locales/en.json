@@ -1,0 +1,80 @@
+{
+  "app": {
+    "name": "CityRide",
+    "tagline": "Minibus rides, simplified."
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "email": "Email",
+    "password": "Password",
+    "phone": "Phone number",
+    "name": "Full name",
+    "send": "Send",
+    "retry": "Retry"
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to continue",
+    "signupTitle": "Create your account",
+    "signupSubtitle": "Join CityRide in a few seconds",
+    "dontHaveAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "signUp": "Sign up",
+    "signIn": "Sign in",
+    "role": "I am a",
+    "passenger": "Passenger",
+    "driver": "Driver"
+  },
+  "home": {
+    "title": "Where to?",
+    "requestRide": "Request a ride",
+    "recent": "Recent bookings"
+  },
+  "booking": {
+    "title": "Request a ride",
+    "pickup": "Pickup location",
+    "destination": "Destination",
+    "fare": "Estimated fare",
+    "confirm": "Confirm request",
+    "requested": "Ride requested"
+  },
+  "history": {
+    "title": "Booking history",
+    "empty": "No bookings yet"
+  },
+  "details": {
+    "title": "Booking details",
+    "status": "Status",
+    "passenger": "Passenger",
+    "driver": "Driver",
+    "accept": "Accept booking",
+    "start": "Start trip",
+    "complete": "Complete",
+    "cancel": "Cancel booking"
+  },
+  "driver": {
+    "title": "Available requests",
+    "empty": "No ride requests nearby"
+  },
+  "profile": {
+    "title": "Profile",
+    "role": "Role",
+    "settings": "Settings",
+    "signOut": "Sign out"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Appearance"
+  },
+  "status": {
+    "requested": "Requested",
+    "accepted": "Accepted",
+    "in_progress": "In progress",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  }
+}
