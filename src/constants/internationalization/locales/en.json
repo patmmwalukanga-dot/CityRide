@@ -29,7 +29,15 @@
     "driver": "Driver"
   },
   "home": {
-    "title": "Where to?",
+    "title": "Where are you going?",
+    "subtitle": "Select a destination to begin.",
+    "enterDestination": "Enter destination",
+    "later": "Later",
+    "quickHome": "Home",
+    "quickWork": "Work",
+    "addrHome": "742 Evergreen Terrace",
+    "addrWork": "One World Trade Center",
+    "eta": "{min} min",
     "requestRide": "Request a ride",
     "recent": "Recent bookings"
   },

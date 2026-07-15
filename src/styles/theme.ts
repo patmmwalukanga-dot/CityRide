@@ -4,6 +4,8 @@ export const theme = {
     secondary: "#FF6D00",
     background: "#F7F9FC",
     surface: "#FFFFFF",
+    surfaceContainer: "#F4F4F4",
+    surfaceVariant: "#EAEFF5",
     text: "#102A43",
     textMuted: "#627D98",
     border: "#D9E2EC",

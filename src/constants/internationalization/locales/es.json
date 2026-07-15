@@ -30,6 +30,14 @@
   },
   "home": {
     "title": "¿A dónde vas?",
+    "subtitle": "Selecciona un destino para empezar.",
+    "enterDestination": "Ingresa un destino",
+    "later": "Después",
+    "quickHome": "Casa",
+    "quickWork": "Trabajo",
+    "addrHome": "742 Evergreen Terrace",
+    "addrWork": "One World Trade Center",
+    "eta": "{min} min",
     "requestRide": "Solicitar viaje",
     "recent": "Viajes recientes"
   },
