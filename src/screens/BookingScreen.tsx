@@ -95,7 +95,7 @@ export function BookingScreen() {
                   <Text style={styles.rideName}>{t(ride.nameKey)}</Text>
                   <Text style={styles.rideEta}>{t("booking.minAway", { min: ride.eta })}</Text>
                 </View>
-                <Text style={styles.rideFare}>{`ZK ${ride.fare.toFixed(2)}`}</Text>
+                <Text style={styles.rideFare}>{`K ${ride.fare.toFixed(2)}`}</Text>
               </TouchableOpacity>
             );
           })}

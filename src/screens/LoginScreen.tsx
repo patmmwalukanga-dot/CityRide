@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { Screen } from "../components/Screen";
@@ -53,15 +53,6 @@ export function LoginScreen() {
         {error ? <Text style={styles.error}>{error}</Text> : null}
         <Button label={t("auth.signIn")} onPress={onSubmit} loading={loading} />
       </View>
-
-      <TouchableOpacity
-        style={styles.link}
-        onPress={() => router.push("/signup")}
-      >
-        <Text style={styles.linkText}>
-          {t("auth.dontHaveAccount")} {t("auth.signUp")}
-        </Text>
-      </TouchableOpacity>
     </Screen>
   );
 }
@@ -83,13 +74,5 @@ const styles = StyleSheet.create({
   error: {
     color: theme.colors.danger,
     marginBottom: theme.spacing(1.5),
-  },
-  link: {
-    marginTop: theme.spacing(3),
-    alignItems: "center",
-  },
-  linkText: {
-    color: theme.colors.primary,
-    fontWeight: "600",
   },
 });
