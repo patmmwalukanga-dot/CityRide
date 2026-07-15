@@ -10,12 +10,11 @@ export default function Index() {
 
   useEffect(() => {
     if (initializing) return;
-    if (!FIREBASE_READY) {
-      router.replace("/home");
+    if (!user) {
+      router.replace("/login");
       return;
     }
-    if (!user) router.replace("/login");
-    else if (user.role === "driver") router.replace("/driver-requests");
+    if (user.role === "driver") router.replace("/driver-home");
     else router.replace("/home");
   }, [user, initializing, FIREBASE_READY]);
 

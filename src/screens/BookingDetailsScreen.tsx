@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
+import { MaterialIcons } from "@expo/vector-icons";
 import { Screen } from "../components/Screen";
 import { Button } from "../components/Button";
 import { StatusBadge } from "../components/StatusBadge";
@@ -31,22 +32,36 @@ export function BookingDetailsScreen({ bookingId }: { bookingId: string }) {
   return (
     <Screen title={t("details.title")}>
       <View style={styles.card}>
-        <View style={styles.row}>
-          <Text style={styles.label}>{t("details.status")}</Text>
+        <View style={styles.header}>
+          <View style={styles.routeBlock}>
+            <Text style={styles.route} numberOfLines={1}>
+              {booking.pickup}
+            </Text>
+            <MaterialIcons
+              name="south"
+              size={18}
+              color={theme.colors.textMuted}
+            />
+            <Text style={styles.route} numberOfLines={1}>
+              {booking.destination}
+            </Text>
+          </View>
           <StatusBadge status={booking.status} />
         </View>
-        <Text style={styles.route}>
-          {booking.pickup} → {booking.destination}
-        </Text>
-        <Text style={styles.fare}>{formatFare(booking.fare)}</Text>
-        <Text style={styles.meta}>
-          {t("details.passenger")}: {booking.passengerName}
-        </Text>
-        {booking.driverName ? (
+
+        <View style={styles.divider} />
+
+        <View style={styles.body}>
+          <Text style={styles.fare}>{formatFare(booking.fare)}</Text>
           <Text style={styles.meta}>
-            {t("details.driver")}: {booking.driverName}
+            {t("details.passenger")}: {booking.passengerName}
           </Text>
-        ) : null}
+          {booking.driverName ? (
+            <Text style={styles.meta}>
+              {t("details.driver")}: {booking.driverName}
+            </Text>
+          ) : null}
+        </View>
       </View>
 
       <View style={styles.actions}>
@@ -59,8 +74,10 @@ export function BookingDetailsScreen({ bookingId }: { bookingId: string }) {
 
         {isDriver && booking.status === "accepted" ? (
           <Button
-            label={t("details.start")}
-            onPress={() => updateStatus(booking.id, "in_progress")}
+            label={t("active.navigate")}
+            onPress={() =>
+              router.push({ pathname: "/active/[id]", params: { id: booking.id } })
+            }
           />
         ) : null}
 
@@ -87,6 +104,15 @@ export function BookingDetailsScreen({ bookingId }: { bookingId: string }) {
             }
           />
         ) : null}
+
+        {!isDriver && (booking.status === "accepted" || booking.status === "in_progress") ? (
+          <Button
+            label={t("tracking.open")}
+            onPress={() =>
+              router.push({ pathname: "/tracking/[id]", params: { id: booking.id } })
+            }
+          />
+        ) : null}
       </View>
     </Screen>
   );
@@ -99,28 +125,38 @@ const styles = StyleSheet.create({
     padding: theme.spacing(2),
     borderWidth: 1,
     borderColor: theme.colors.border,
+    shadowColor: "#000",
+    shadowOpacity: 0.04,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 2,
   },
-  row: {
+  header: {
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: theme.spacing(1),
+    gap: theme.spacing(2),
   },
-  label: {
-    fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
-    fontWeight: "600",
+  routeBlock: {
+    flex: 1,
+    minWidth: 0,
   },
   route: {
-    fontSize: theme.fontSize.lg,
+    fontSize: theme.fontSize.md,
     fontWeight: "700",
     color: theme.colors.text,
   },
+  divider: {
+    height: 1,
+    backgroundColor: theme.colors.border,
+    marginVertical: theme.spacing(2),
+  },
+  body: {
+    gap: theme.spacing(1),
+  },
   fare: {
-    fontSize: theme.fontSize.lg,
+    fontSize: theme.fontSize.xl,
     color: theme.colors.primary,
     fontWeight: "700",
-    marginVertical: theme.spacing(0.5),
   },
   meta: {
     fontSize: theme.fontSize.sm,

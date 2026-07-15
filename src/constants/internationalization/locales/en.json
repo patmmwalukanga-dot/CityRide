@@ -86,23 +86,40 @@
     "title": "Available requests",
     "empty": "No ride requests nearby"
   },
-  "profile": {
-    "title": "Profile",
-    "role": "Role",
-    "settings": "Settings",
-    "signOut": "Sign out",
-    "memberSince": "Premium Member since 2022",
-    "groupAccount": "Account",
-    "groupPreferences": "Preferences",
-    "groupSupport": "Support",
-    "groupLegal": "Legal",
-    "personalInfo": "Personal Info",
-    "paymentMethods": "Payment Methods",
-    "rideTypes": "Ride types",
-    "helpCenter": "Help Center",
-    "contactUs": "Contact Us",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
+  "driverHome": {
+    "online": "Online",
+    "offline": "Offline",
+    "newRequest": "New Request",
+    "rides": "Rides",
+    "goOffline": "Go Offline",
+    "goOnline": "Go Online",
+    "accept": "Accept",
+    "noRequests": "No new requests"
+  },
+  "request": {
+    "pickup": "Pickup",
+    "dropoff": "Dropoff",
+    "decline": "Decline",
+    "expired": "Request Expired",
+    "backOnline": "Back Online",
+    "goldTier": "Gold Tier Bonus Applied",
+    "goldBonus": "+ZK 5.00"
+  },
+  "tracking": {
+    "arriving": "Arriving in 2 mins",
+    "onTheWay": "On the way",
+    "cancel": "Cancel",
+    "noVehicle": "No vehicle info",
+    "open": "Track ride"
+  },
+  "active": {
+    "distance": "Distance",
+    "time": "Time",
+    "dropoff": "Drop-off",
+    "arrived": "Arrived",
+    "starting": "Starting trip...",
+    "started": "Trip started",
+    "navigate": "Navigate"
   },
   "settings": {
     "title": "Settings",
@@ -115,5 +132,27 @@
     "in_progress": "In progress",
     "completed": "Completed",
     "cancelled": "Cancelled"
+  },
+  "profile": {
+    "title": "Profile",
+    "memberSince": "Member since",
+    "groupAccount": "Account",
+    "personalInfo": "Personal information",
+    "paymentMethods": "Payment methods",
+    "groupPreferences": "Preferences",
+    "rideTypes": "Ride types",
+    "groupSupport": "Support",
+    "helpCenter": "Help center",
+    "contactUs": "Contact us",
+    "groupLegal": "Legal",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "signOut": "Sign out"
+  },
+  "driverProfile": {
+    "earningsOverview": "Earnings overview",
+    "totalEarnings": "Total earnings",
+    "trips": "Trips",
+    "rating": "Rating"
   }
 }

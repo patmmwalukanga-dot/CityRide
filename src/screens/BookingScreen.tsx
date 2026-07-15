@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -30,6 +31,7 @@ export function BookingScreen() {
   const router = useRouter();
   const { user } = useAuth();
   const { requestBooking } = useBookings();
+  const insets = useSafeAreaInsets();
 
   const [selected, setSelected] = useState("standard");
   const [loading, setLoading] = useState(false);
@@ -59,7 +61,7 @@ export function BookingScreen() {
         <View style={[styles.mapDot, styles.mapDotAccent, { top: "26%", right: "24%" }]} />
       </View>
 
-      <View style={styles.pills}>
+      <View style={[styles.pills, { top: insets.top + theme.spacing(3) }]}>
         <View style={styles.pill}>
           <MaterialIcons name="my-location" size={20} color={theme.colors.primary} />
           <Text style={styles.pillText} numberOfLines={1}>
@@ -74,7 +76,7 @@ export function BookingScreen() {
         </View>
       </View>
 
-      <View style={styles.sheet}>
+      <View style={[styles.sheet, { paddingBottom: insets.bottom + theme.spacing(3) }]}>
         <View style={styles.grabber} />
         <Text style={styles.heading}>{t("booking.selectRide")}</Text>
 

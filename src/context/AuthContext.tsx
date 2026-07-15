@@ -12,7 +12,11 @@ export interface AuthContextValue {
   user: User | null;
   initializing: boolean;
   isFirebaseConfigured: boolean;
-  signIn: (email: string, password: string) => Promise<{ error?: string }>;
+  signIn: (
+    email: string,
+    password: string,
+    role?: UserRole,
+  ) => Promise<{ error?: string }>;
   signUp: (params: {
     name: string;
     email: string;
@@ -52,11 +56,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return unsub;
   }, []);
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (
+    email: string,
+    password: string,
+    role: UserRole = "passenger",
+  ) => {
     const res = await signInWithEmail(email, password);
     if (res.error) {
       if (res.error === "FIREBASE_NOT_CONFIGURED") {
-        setUser(mockUser("passenger", email));
+        setUser(mockUser(role, email));
         return {};
       }
       return { error: res.error };

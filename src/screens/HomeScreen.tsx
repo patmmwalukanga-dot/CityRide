@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -14,6 +15,7 @@ import { theme } from "../styles/theme";
 export function HomeScreen() {
   const { t } = useTranslation();
   const router = useRouter();
+  const insets = useSafeAreaInsets();
   const [destination, setDestination] = useState("");
 
   const goBooking = () => router.push("/booking");
@@ -38,11 +40,14 @@ export function HomeScreen() {
         <View style={[styles.vehicleDot, { top: "65%", left: "30%" }]} />
       </View>
 
-      <TouchableOpacity style={styles.menu} activeOpacity={0.8}>
+      <TouchableOpacity
+        style={[styles.menu, { top: insets.top + theme.spacing(3) }]}
+        activeOpacity={0.8}
+      >
         <MaterialIcons name="menu" size={24} color={theme.colors.text} />
       </TouchableOpacity>
 
-      <View style={styles.sheet}>
+      <View style={[styles.sheet, { paddingBottom: insets.bottom + theme.spacing(3) }]}>
         <View style={styles.sheetHeader}>
           <Text style={styles.title}>{t("home.title")}</Text>
           <Text style={styles.subtitle}>{t("home.subtitle")}</Text>
@@ -151,6 +156,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderWidth: 1,
     borderColor: theme.colors.border,
+    shadowColor: "#000",
+    shadowOpacity: 0.06,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 3,
     zIndex: 50,
   },
   sheet: {

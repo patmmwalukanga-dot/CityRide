@@ -86,23 +86,40 @@
     "title": "Solicitudes disponibles",
     "empty": "No hay solicitudes cercanas"
   },
-  "profile": {
-    "title": "Perfil",
-    "role": "Rol",
-    "settings": "Ajustes",
-    "signOut": "Cerrar sesión",
-    "memberSince": "Miembro Premium desde 2022",
-    "groupAccount": "Cuenta",
-    "groupPreferences": "Preferencias",
-    "groupSupport": "Soporte",
-    "groupLegal": "Legal",
-    "personalInfo": "Información personal",
-    "paymentMethods": "Métodos de pago",
-    "rideTypes": "Tipos de viaje",
-    "helpCenter": "Centro de ayuda",
-    "contactUs": "Contáctanos",
-    "terms": "Términos del servicio",
-    "privacy": "Política de privacidad"
+  "driverHome": {
+    "online": "En línea",
+    "offline": "Desconectado",
+    "newRequest": "Nueva solicitud",
+    "rides": "Viajes",
+    "goOffline": "Desconectarse",
+    "goOnline": "Conectarse",
+    "accept": "Aceptar",
+    "noRequests": "Sin nuevas solicitudes"
+  },
+  "request": {
+    "pickup": "Recogida",
+    "dropoff": "Destino",
+    "decline": "Rechazar",
+    "expired": "Solicitud expirada",
+    "backOnline": "Volver en línea",
+    "goldTier": "Bono de nivel Oro aplicado",
+    "goldBonus": "+ZK 5.00"
+  },
+  "tracking": {
+    "arriving": "Llegando en 2 min",
+    "onTheWay": "En camino",
+    "cancel": "Cancelar",
+    "noVehicle": "Sin info. del vehículo",
+    "open": "Seguir viaje"
+  },
+  "active": {
+    "distance": "Distancia",
+    "time": "Tiempo",
+    "dropoff": "Destino",
+    "arrived": "Llegó",
+    "starting": "Iniciando viaje...",
+    "started": "Viaje iniciado",
+    "navigate": "Navegar"
   },
   "settings": {
     "title": "Ajustes",
@@ -115,5 +132,27 @@
     "in_progress": "En curso",
     "completed": "Completado",
     "cancelled": "Cancelado"
+  },
+  "profile": {
+    "title": "Perfil",
+    "memberSince": "Miembro desde",
+    "groupAccount": "Cuenta",
+    "personalInfo": "Información personal",
+    "paymentMethods": "Métodos de pago",
+    "groupPreferences": "Preferencias",
+    "rideTypes": "Tipos de viaje",
+    "groupSupport": "Soporte",
+    "helpCenter": "Centro de ayuda",
+    "contactUs": "Contáctanos",
+    "groupLegal": "Legal",
+    "terms": "Términos",
+    "privacy": "Privacidad",
+    "signOut": "Cerrar sesión"
+  },
+  "driverProfile": {
+    "earningsOverview": "Resumen de ganancias",
+    "totalEarnings": "Ganancias totales",
+    "trips": "Viajes",
+    "rating": "Calificación"
   }
 }

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 96,
     height: 96,
-    borderRadius: 24,
+    borderRadius: theme.radius.lg,
     backgroundColor: theme.colors.secondary,
     alignItems: "center",
     justifyContent: "center",

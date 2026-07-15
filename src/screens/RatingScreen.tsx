@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     maxWidth: 360,
     marginHorizontal: theme.spacing(3),
     backgroundColor: theme.colors.surface,
-    borderRadius: 24,
+    borderRadius: theme.radius.lg,
     padding: theme.spacing(4),
     alignItems: "center",
     gap: theme.spacing(3),
