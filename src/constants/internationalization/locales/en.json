@@ -47,7 +47,17 @@
     "destination": "Destination",
     "fare": "Estimated fare",
     "confirm": "Confirm request",
-    "requested": "Ride requested"
+    "requested": "Ride requested",
+    "selectRide": "Select your ride",
+    "standard": "Standard",
+    "premium": "Premium",
+    "minAway": "{min} min away",
+    "request": "Request {type}",
+    "finding": "Finding your driver",
+    "connecting": "Connecting with the nearest ride...",
+    "paymentMethod": "•••• 1234",
+    "demoPickup": "The Ritz-Carlton, 600 Stockton St",
+    "demoDestination": "Ferry Building, One Ferry Building"
   },
   "history": {
     "title": "Booking history",

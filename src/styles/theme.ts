@@ -12,6 +12,7 @@ export const theme = {
     success: "#2E7D32",
     danger: "#C62828",
     white: "#FFFFFF",
+    scrim: "rgba(16, 42, 67, 0.4)",
   },
   spacing: (multiplier: number) => multiplier * 8,
   radius: {

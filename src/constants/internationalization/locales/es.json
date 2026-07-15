@@ -47,7 +47,17 @@
     "destination": "Destino",
     "fare": "Tarifa estimada",
     "confirm": "Confirmar solicitud",
-    "requested": "Viaje solicitado"
+    "requested": "Viaje solicitado",
+    "selectRide": "Selecciona tu viaje",
+    "standard": "Estándar",
+    "premium": "Premium",
+    "minAway": "{min} min",
+    "request": "Solicitar {type}",
+    "finding": "Buscando tu conductor",
+    "connecting": "Conectando con el viaje más cercano...",
+    "paymentMethod": "•••• 1234",
+    "demoPickup": "The Ritz-Carlton, 600 Stockton St",
+    "demoDestination": "Ferry Building, One Ferry Building"
   },
   "history": {
     "title": "Historial de viajes",
