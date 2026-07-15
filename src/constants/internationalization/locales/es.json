@@ -30,6 +30,14 @@
   },
   "home": {
     "title": "¿A dónde vas?",
+    "subtitle": "Selecciona un destino para empezar.",
+    "enterDestination": "Ingresa un destino",
+    "later": "Después",
+    "quickHome": "Casa",
+    "quickWork": "Trabajo",
+    "addrHome": "742 Evergreen Terrace",
+    "addrWork": "One World Trade Center",
+    "eta": "{min} min",
     "requestRide": "Solicitar viaje",
     "recent": "Viajes recientes"
   },
@@ -39,11 +47,30 @@
     "destination": "Destino",
     "fare": "Tarifa estimada",
     "confirm": "Confirmar solicitud",
-    "requested": "Viaje solicitado"
+    "requested": "Viaje solicitado",
+    "selectRide": "Selecciona tu viaje",
+    "standard": "Estándar",
+    "premium": "Premium",
+    "minAway": "{min} min",
+    "request": "Solicitar {type}",
+    "finding": "Buscando tu conductor",
+    "connecting": "Conectando con el viaje más cercano...",
+    "paymentMethod": "•••• 1234",
+    "demoPickup": "The Ritz-Carlton, 600 Stockton St",
+    "demoDestination": "Ferry Building, One Ferry Building"
+  },
+  "rating": {
+    "finalFare": "Tarifa final",
+    "rateTrip": "Califica tu viaje con {name}",
+    "rate": "Calificar viaje",
+    "done": "Listo"
   },
   "history": {
-    "title": "Historial de viajes",
-    "empty": "Aún no hay viajes"
+    "title": "Actividad",
+    "empty": "Aún no hay viajes",
+    "past": "Pasados",
+    "upcoming": "Próximos",
+    "driver": "Conductor: {name}"
   },
   "details": {
     "title": "Detalles del viaje",
@@ -59,11 +86,40 @@
     "title": "Solicitudes disponibles",
     "empty": "No hay solicitudes cercanas"
   },
-  "profile": {
-    "title": "Perfil",
-    "role": "Rol",
-    "settings": "Ajustes",
-    "signOut": "Cerrar sesión"
+  "driverHome": {
+    "online": "En línea",
+    "offline": "Desconectado",
+    "newRequest": "Nueva solicitud",
+    "rides": "Viajes",
+    "goOffline": "Desconectarse",
+    "goOnline": "Conectarse",
+    "accept": "Aceptar",
+    "noRequests": "Sin nuevas solicitudes"
+  },
+  "request": {
+    "pickup": "Recogida",
+    "dropoff": "Destino",
+    "decline": "Rechazar",
+    "expired": "Solicitud expirada",
+    "backOnline": "Volver en línea",
+    "goldTier": "Bono de nivel Oro aplicado",
+    "goldBonus": "+ZK 5.00"
+  },
+  "tracking": {
+    "arriving": "Llegando en 2 min",
+    "onTheWay": "En camino",
+    "cancel": "Cancelar",
+    "noVehicle": "Sin info. del vehículo",
+    "open": "Seguir viaje"
+  },
+  "active": {
+    "distance": "Distancia",
+    "time": "Tiempo",
+    "dropoff": "Destino",
+    "arrived": "Llegó",
+    "starting": "Iniciando viaje...",
+    "started": "Viaje iniciado",
+    "navigate": "Navegar"
   },
   "settings": {
     "title": "Ajustes",
@@ -76,5 +132,27 @@
     "in_progress": "En curso",
     "completed": "Completado",
     "cancelled": "Cancelado"
+  },
+  "profile": {
+    "title": "Perfil",
+    "memberSince": "Miembro desde",
+    "groupAccount": "Cuenta",
+    "personalInfo": "Información personal",
+    "paymentMethods": "Métodos de pago",
+    "groupPreferences": "Preferencias",
+    "rideTypes": "Tipos de viaje",
+    "groupSupport": "Soporte",
+    "helpCenter": "Centro de ayuda",
+    "contactUs": "Contáctanos",
+    "groupLegal": "Legal",
+    "terms": "Términos",
+    "privacy": "Privacidad",
+    "signOut": "Cerrar sesión"
+  },
+  "driverProfile": {
+    "earningsOverview": "Resumen de ganancias",
+    "totalEarnings": "Ganancias totales",
+    "trips": "Viajes",
+    "rating": "Calificación"
   }
 }

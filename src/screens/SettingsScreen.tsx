@@ -64,7 +64,9 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.sm,
     color: theme.colors.textMuted,
     fontWeight: "600",
-    marginTop: theme.spacing(1),
+    textTransform: "uppercase",
+    letterSpacing: 1,
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(1),
   },
   chips: {

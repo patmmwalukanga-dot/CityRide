@@ -29,7 +29,15 @@
     "driver": "Driver"
   },
   "home": {
-    "title": "Where to?",
+    "title": "Where are you going?",
+    "subtitle": "Select a destination to begin.",
+    "enterDestination": "Enter destination",
+    "later": "Later",
+    "quickHome": "Home",
+    "quickWork": "Work",
+    "addrHome": "742 Evergreen Terrace",
+    "addrWork": "One World Trade Center",
+    "eta": "{min} min",
     "requestRide": "Request a ride",
     "recent": "Recent bookings"
   },
@@ -39,11 +47,30 @@
     "destination": "Destination",
     "fare": "Estimated fare",
     "confirm": "Confirm request",
-    "requested": "Ride requested"
+    "requested": "Ride requested",
+    "selectRide": "Select your ride",
+    "standard": "Standard",
+    "premium": "Premium",
+    "minAway": "{min} min away",
+    "request": "Request {type}",
+    "finding": "Finding your driver",
+    "connecting": "Connecting with the nearest ride...",
+    "paymentMethod": "•••• 1234",
+    "demoPickup": "The Ritz-Carlton, 600 Stockton St",
+    "demoDestination": "Ferry Building, One Ferry Building"
+  },
+  "rating": {
+    "finalFare": "Final Fare",
+    "rateTrip": "Rate your trip with {name}",
+    "rate": "Rate trip",
+    "done": "Done"
   },
   "history": {
-    "title": "Booking history",
-    "empty": "No bookings yet"
+    "title": "Activity",
+    "empty": "No bookings yet",
+    "past": "Past",
+    "upcoming": "Upcoming",
+    "driver": "Driver: {name}"
   },
   "details": {
     "title": "Booking details",
@@ -59,11 +86,40 @@
     "title": "Available requests",
     "empty": "No ride requests nearby"
   },
-  "profile": {
-    "title": "Profile",
-    "role": "Role",
-    "settings": "Settings",
-    "signOut": "Sign out"
+  "driverHome": {
+    "online": "Online",
+    "offline": "Offline",
+    "newRequest": "New Request",
+    "rides": "Rides",
+    "goOffline": "Go Offline",
+    "goOnline": "Go Online",
+    "accept": "Accept",
+    "noRequests": "No new requests"
+  },
+  "request": {
+    "pickup": "Pickup",
+    "dropoff": "Dropoff",
+    "decline": "Decline",
+    "expired": "Request Expired",
+    "backOnline": "Back Online",
+    "goldTier": "Gold Tier Bonus Applied",
+    "goldBonus": "+ZK 5.00"
+  },
+  "tracking": {
+    "arriving": "Arriving in 2 mins",
+    "onTheWay": "On the way",
+    "cancel": "Cancel",
+    "noVehicle": "No vehicle info",
+    "open": "Track ride"
+  },
+  "active": {
+    "distance": "Distance",
+    "time": "Time",
+    "dropoff": "Drop-off",
+    "arrived": "Arrived",
+    "starting": "Starting trip...",
+    "started": "Trip started",
+    "navigate": "Navigate"
   },
   "settings": {
     "title": "Settings",
@@ -76,5 +132,27 @@
     "in_progress": "In progress",
     "completed": "Completed",
     "cancelled": "Cancelled"
+  },
+  "profile": {
+    "title": "Profile",
+    "memberSince": "Member since",
+    "groupAccount": "Account",
+    "personalInfo": "Personal information",
+    "paymentMethods": "Payment methods",
+    "groupPreferences": "Preferences",
+    "rideTypes": "Ride types",
+    "groupSupport": "Support",
+    "helpCenter": "Help center",
+    "contactUs": "Contact us",
+    "groupLegal": "Legal",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "signOut": "Sign out"
+  },
+  "driverProfile": {
+    "earningsOverview": "Earnings overview",
+    "totalEarnings": "Total earnings",
+    "trips": "Trips",
+    "rating": "Rating"
   }
 }

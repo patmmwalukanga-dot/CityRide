@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   StyleSheet,
+  Image,
   TouchableOpacity,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -16,6 +17,9 @@ import { theme } from "../styles/theme";
 
 const GLASS = "rgba(255, 255, 255, 0.85)";
 
+const PROFILE_AVATAR =
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuC0k6_4u8PAfagmG6AfJU8NQ6PEM7KSqVbA2TWggcOzIHa-olz5h3rmqKcVtGxy_dtlUtUQWYyuClMXNT16wZOywiWyERCTKAyTAJ1agHKxRlH9yPMAX_oMYCxBa0v855Czc76Q53Jcc3TLqTzw8uxcYfqeiuwNJTRd7W6MR9gnSbkoJFO5T2g6BTVx101LSup1lMaySfxpY-wpR5TFHXsB4L9Tq1txTeChLGuoQ7j4WGNaA7WCq9TNiGxzAaeKaFP-KSzC-K2SbhjQ";
+
 type IconName = React.ComponentProps<typeof MaterialIcons>["name"];
 
 interface NavItem {
@@ -25,15 +29,14 @@ interface NavItem {
   value?: string;
 }
 
-export function ProfileScreen() {
+export function DriverProfileScreen() {
   const { t } = useTranslation();
   const router = useRouter();
   const { user, signOut } = useAuth();
   const { language, languages } = useLocalization();
   const insets = useSafeAreaInsets();
 
-  const name = user?.name ?? "?";
-  const initial = name.charAt(0).toUpperCase();
+  const name = user?.name ?? "Sarah Phiri";
   const currentLanguage =
     languages.find((l) => l.code === language)?.label ?? "";
 
@@ -58,30 +61,60 @@ export function ProfileScreen() {
         <View style={styles.header}>
           <View style={styles.avatarWrap}>
             <View style={styles.avatarRing}>
-              <View style={styles.avatarInner}>
-                <Text style={styles.avatarText}>{initial}</Text>
-              </View>
+              <Image source={{ uri: PROFILE_AVATAR }} style={styles.avatarImg} />
             </View>
             <View style={styles.ratingBadge}>
               <Text style={styles.ratingText}>4.9</Text>
-              <MaterialIcons name="star" size={14} color={theme.colors.white} />
+              <MaterialIcons
+                name="star"
+                size={14}
+                color={theme.colors.white}
+              />
             </View>
           </View>
-          <Text style={styles.name}>{user?.name}</Text>
+          <Text style={styles.name}>{name}</Text>
           <Text style={styles.subtitle}>{t("profile.memberSince")}</Text>
         </View>
 
+        {/* Earnings overview */}
+        <View style={styles.section}>
+          <Text style={styles.groupTitle}>{t("driverProfile.earningsOverview")}</Text>
+          <View style={styles.earnCard}>
+            <View style={styles.earnCol}>
+              <Text style={styles.earnLabel}>{t("driverProfile.totalEarnings")}</Text>
+              <Text style={styles.earnValue}>ZK 1,250.00</Text>
+            </View>
+            <View style={[styles.earnCol, styles.earnCenter]}>
+              <Text style={styles.earnLabel}>{t("driverProfile.trips")}</Text>
+              <Text style={styles.earnValue}>14</Text>
+            </View>
+            <View style={[styles.earnCol, styles.earnRight]}>
+              <Text style={styles.earnLabel}>{t("driverProfile.rating")}</Text>
+              <Text style={styles.earnValue}>4.98</Text>
+            </View>
+          </View>
+        </View>
+
+        {/* Navigation groups */}
         <NavGroup
           title={t("profile.groupAccount")}
           items={[
             { icon: "person", label: t("profile.personalInfo"), onPress: goSettings },
-            { icon: "payments", label: t("profile.paymentMethods"), onPress: goSettings },
+            {
+              icon: "payments",
+              label: t("profile.paymentMethods"),
+              onPress: goSettings,
+            },
           ]}
         />
         <NavGroup
           title={t("profile.groupPreferences")}
           items={[
-            { icon: "directions-car", label: t("profile.rideTypes"), onPress: goSettings },
+            {
+              icon: "directions-car",
+              label: t("profile.rideTypes"),
+              onPress: goSettings,
+            },
             {
               icon: "language",
               label: t("settings.language"),
@@ -94,7 +127,11 @@ export function ProfileScreen() {
           title={t("profile.groupSupport")}
           items={[
             { icon: "help", label: t("profile.helpCenter"), onPress: goSettings },
-            { icon: "chat-bubble", label: t("profile.contactUs"), onPress: goSettings },
+            {
+              icon: "chat-bubble",
+              label: t("profile.contactUs"),
+              onPress: goSettings,
+            },
           ]}
         />
         <NavGroup
@@ -105,6 +142,7 @@ export function ProfileScreen() {
           ]}
         />
 
+        {/* Log out */}
         <TouchableOpacity style={styles.logout} onPress={signOut} activeOpacity={0.9}>
           <MaterialIcons name="logout" size={20} color={theme.colors.danger} />
           <Text style={styles.logoutText}>{t("profile.signOut")}</Text>
@@ -222,20 +260,13 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     elevation: 6,
   },
-  avatarInner: {
+  avatarImg: {
     width: "100%",
     height: "100%",
     borderRadius: theme.radius.full,
     borderWidth: 4,
     borderColor: theme.colors.surface,
     backgroundColor: theme.colors.surfaceVariant,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  avatarText: {
-    fontSize: theme.fontSize.xl,
-    fontWeight: "700",
-    color: theme.colors.primary,
   },
   ratingBadge: {
     position: "absolute",
@@ -269,6 +300,9 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.sm,
     color: theme.colors.textMuted,
   },
+  section: {
+    marginBottom: theme.spacing(4),
+  },
   group: {
     marginBottom: theme.spacing(4),
   },
@@ -280,6 +314,40 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     paddingHorizontal: 4,
     marginBottom: theme.spacing(1.5),
+  },
+  earnCard: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: GLASS,
+    borderRadius: theme.radius.lg,
+    padding: theme.spacing(3),
+    shadowColor: "#000",
+    shadowOpacity: 0.04,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 2,
+  },
+  earnCol: {
+    flex: 1,
+  },
+  earnCenter: {
+    alignItems: "center",
+  },
+  earnRight: {
+    alignItems: "flex-end",
+  },
+  earnLabel: {
+    fontSize: theme.fontSize.sm,
+    fontWeight: "600",
+    color: theme.colors.textMuted,
+    textTransform: "uppercase",
+  },
+  earnValue: {
+    fontSize: theme.fontSize.lg,
+    fontWeight: "700",
+    color: theme.colors.primary,
+    marginTop: theme.spacing(1),
   },
   card: {
     backgroundColor: theme.colors.surface,
