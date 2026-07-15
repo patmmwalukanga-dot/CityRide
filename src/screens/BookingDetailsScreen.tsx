@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "expo-router";
 import { Screen } from "../components/Screen";
 import { Button } from "../components/Button";
 import { StatusBadge } from "../components/StatusBadge";
@@ -11,6 +12,7 @@ import { formatFare } from "../utils/format";
 
 export function BookingDetailsScreen({ bookingId }: { bookingId: string }) {
   const { t } = useTranslation();
+  const router = useRouter();
   const { user } = useAuth();
   const { bookings, acceptBooking, updateStatus } = useBookings();
 
@@ -74,6 +76,15 @@ export function BookingDetailsScreen({ bookingId }: { bookingId: string }) {
             label={t("details.cancel")}
             variant="ghost"
             onPress={() => updateStatus(booking.id, "cancelled")}
+          />
+        ) : null}
+
+        {!isDriver && booking.status === "completed" && user ? (
+          <Button
+            label={t("rating.rate")}
+            onPress={() =>
+              router.push({ pathname: "/rating/[id]", params: { id: booking.id } })
+            }
           />
         ) : null}
       </View>

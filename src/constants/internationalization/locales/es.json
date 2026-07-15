@@ -59,6 +59,12 @@
     "demoPickup": "The Ritz-Carlton, 600 Stockton St",
     "demoDestination": "Ferry Building, One Ferry Building"
   },
+  "rating": {
+    "finalFare": "Tarifa final",
+    "rateTrip": "Califica tu viaje con {name}",
+    "rate": "Calificar viaje",
+    "done": "Listo"
+  },
   "history": {
     "title": "Historial de viajes",
     "empty": "Aún no hay viajes"
