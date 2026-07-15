@@ -63,7 +63,19 @@
     "title": "Profile",
     "role": "Role",
     "settings": "Settings",
-    "signOut": "Sign out"
+    "signOut": "Sign out",
+    "memberSince": "Premium Member since 2022",
+    "groupAccount": "Account",
+    "groupPreferences": "Preferences",
+    "groupSupport": "Support",
+    "groupLegal": "Legal",
+    "personalInfo": "Personal Info",
+    "paymentMethods": "Payment Methods",
+    "rideTypes": "Ride types",
+    "helpCenter": "Help Center",
+    "contactUs": "Contact Us",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
   },
   "settings": {
     "title": "Settings",

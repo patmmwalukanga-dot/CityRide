@@ -63,7 +63,19 @@
     "title": "Perfil",
     "role": "Rol",
     "settings": "Ajustes",
-    "signOut": "Cerrar sesión"
+    "signOut": "Cerrar sesión",
+    "memberSince": "Miembro Premium desde 2022",
+    "groupAccount": "Cuenta",
+    "groupPreferences": "Preferencias",
+    "groupSupport": "Soporte",
+    "groupLegal": "Legal",
+    "personalInfo": "Información personal",
+    "paymentMethods": "Métodos de pago",
+    "rideTypes": "Tipos de viaje",
+    "helpCenter": "Centro de ayuda",
+    "contactUs": "Contáctanos",
+    "terms": "Términos del servicio",
+    "privacy": "Política de privacidad"
   },
   "settings": {
     "title": "Ajustes",
