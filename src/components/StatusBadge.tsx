@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useTranslation } from "react-i18next";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 import type { BookingStatus } from "../types";
 
 const statusColors: Record<BookingStatus, string> = {

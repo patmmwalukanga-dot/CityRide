@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { changeLanguage, LANGUAGES, type LanguageCode } from "../localization";
-import i18n from "../localization";
+import { changeLanguage, LANGUAGES, type LanguageCode } from "../constants/internationalization";
+import i18n from "../constants/internationalization";
 
 export function useLocalization() {
   const { t } = useTranslation();

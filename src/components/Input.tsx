@@ -6,7 +6,7 @@ import {
   View,
   type KeyboardType,
 } from "react-native";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 
 interface InputProps {
   label: string;

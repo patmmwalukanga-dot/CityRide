@@ -1,7 +1,7 @@
 import React, { type ReactNode } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 
 interface ScreenProps {
   title?: string;

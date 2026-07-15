@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
 import { Screen } from "../components/Screen";
 import { useLocalization } from "../hooks/useLocalization";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 
 export function SettingsScreen() {
   const { t } = useTranslation();

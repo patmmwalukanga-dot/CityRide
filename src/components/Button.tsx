@@ -8,7 +8,7 @@ import {
   type StyleProp,
   type ViewStyle,
 } from "react-native";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 
 interface ButtonProps extends Omit<PressableProps, "style"> {
   label: string;
