@@ -6,7 +6,7 @@ import { Screen } from "../components/Screen";
 import { BookingCard } from "../components/BookingCard";
 import { useAuth } from "../hooks/useAuth";
 import { useBookings } from "../hooks/useBookings";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 
 export function BookingHistoryScreen() {
   const { t } = useTranslation();

@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import { APP_NAME, BRAND } from "../constants/config";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 
 export function SplashScreen() {
   return (

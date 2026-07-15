@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 import { Screen } from "../components/Screen";
 import { BookingCard } from "../components/BookingCard";
 import { useBookings } from "../hooks/useBookings";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 
 export function DriverRequestsScreen() {
   const { t } = useTranslation();

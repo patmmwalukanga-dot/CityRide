@@ -2,10 +2,10 @@ import { Slot } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import { initI18n } from "../src/localization";
+import { initI18n } from "../src/constants/internationalization";
 import { AuthProvider } from "../src/context/AuthContext";
 import { BookingProvider } from "../src/context/BookingContext";
-import { theme } from "../src/constants/theme";
+import { theme } from "../src/styles/theme";
 
 export default function RootLayout() {
   const [ready, setReady] = useState(false);

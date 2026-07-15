@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 import { Screen } from "../components/Screen";
 import { Button } from "../components/Button";
 import { useAuth } from "../hooks/useAuth";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 
 export function ProfileScreen() {
   const { t } = useTranslation();

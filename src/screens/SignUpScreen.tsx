@@ -6,7 +6,7 @@ import { Screen } from "../components/Screen";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import { useAuth } from "../hooks/useAuth";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 import type { UserRole } from "../types";
 
 export function SignUpScreen() {

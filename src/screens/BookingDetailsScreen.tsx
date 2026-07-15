@@ -6,7 +6,7 @@ import { Button } from "../components/Button";
 import { StatusBadge } from "../components/StatusBadge";
 import { useAuth } from "../hooks/useAuth";
 import { useBookings } from "../hooks/useBookings";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 import { formatFare } from "../utils/format";
 
 export function BookingDetailsScreen({ bookingId }: { bookingId: string }) {

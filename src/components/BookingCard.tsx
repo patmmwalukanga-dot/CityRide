@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useTranslation } from "react-i18next";
-import { theme } from "../constants/theme";
+import { theme } from "../styles/theme";
 import { formatFare } from "../utils/format";
 import { StatusBadge } from "./StatusBadge";
 import type { Booking } from "../types";
