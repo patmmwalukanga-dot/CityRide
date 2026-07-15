@@ -66,8 +66,11 @@
     "done": "Done"
   },
   "history": {
-    "title": "Booking history",
-    "empty": "No bookings yet"
+    "title": "Activity",
+    "empty": "No bookings yet",
+    "past": "Past",
+    "upcoming": "Upcoming",
+    "driver": "Driver: {name}"
   },
   "details": {
     "title": "Booking details",

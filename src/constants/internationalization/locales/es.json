@@ -66,8 +66,11 @@
     "done": "Listo"
   },
   "history": {
-    "title": "Historial de viajes",
-    "empty": "Aún no hay viajes"
+    "title": "Actividad",
+    "empty": "Aún no hay viajes",
+    "past": "Pasados",
+    "upcoming": "Próximos",
+    "driver": "Conductor: {name}"
   },
   "details": {
     "title": "Detalles del viaje",
