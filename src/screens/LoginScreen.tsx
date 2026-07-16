@@ -1,140 +1,442 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { useTranslation } from "react-i18next";
+import React, { useRef, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Animated,
+  TouchableOpacity,
+  SafeAreaView,
+  TextInput,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  ActivityIndicator,
+} from "react-native";
 import { useRouter } from "expo-router";
-import { Screen } from "../components/Screen";
-import { Input } from "../components/Input";
-import { Button } from "../components/Button";
+import { theme } from "../styles/theme";
 import { useAuth } from "../hooks/useAuth";
 import type { UserRole } from "../types";
-import { theme } from "../styles/theme";
 
 export function LoginScreen() {
-  const { t } = useTranslation();
   const router = useRouter();
-  const { signIn, isFirebaseConfigured } = useAuth();
-
+  const { signIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState<UserRole>("passenger");
-  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const onSubmit = async () => {
-    setError(null);
-    setLoading(true);
-    const res = await signIn(email, password, role);
-    setLoading(false);
-    if (res.error) {
-      setError(res.error);
+  // Animation values
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const translateY = useRef(new Animated.Value(20)).current;
+
+  React.useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateY, {
+        toValue: 0,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
+
+  const handleSignIn = async () => {
+    if (!email.trim() || !password.trim()) {
+      setError("Please fill in all fields");
       return;
     }
-    router.replace("/");
+    setLoading(true);
+    setError("");
+    const result = await signIn(email.trim(), password.trim(), role);
+    if (result.error) {
+      setError(result.error);
+      setLoading(false);
+    }
+    // If no error, AuthContext will update user and app/index.tsx will redirect
   };
 
   return (
-    <Screen>
-      <Text style={styles.title}>{t("auth.loginTitle")}</Text>
-      <Text style={styles.subtitle}>{t("auth.loginSubtitle")}</Text>
+    <View style={styles.container}>
+      <SafeAreaView style={styles.safeArea}>
+        {/* Back Button */}
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => router.back()}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.backArrow}>←</Text>
+        </TouchableOpacity>
 
-      <View style={styles.form}>
-        {!isFirebaseConfigured && (
-          <View style={styles.roleSwitch}>
-            <Text style={styles.roleLabel}>{t("auth.role")}</Text>
-            <View style={styles.roleToggle}>
+        <KeyboardAvoidingView
+          style={styles.flex}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <ScrollView
+            style={styles.flex}
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
+          >
+            {/* Brand Logo */}
+            <Animated.View
+              style={[
+                styles.brandSection,
+                {
+                  opacity: fadeAnim,
+                  transform: [{ translateY }],
+                },
+              ]}
+            >
+              <View style={styles.brandIconContainer}>
+                <Text style={styles.brandIcon}>▲</Text>
+              </View>
+              <Text style={styles.brandName}>CityRide</Text>
+            </Animated.View>
+
+            {/* Header */}
+            <Animated.View
+              style={[
+                styles.headerSection,
+                {
+                  opacity: fadeAnim,
+                  transform: [{ translateY }],
+                },
+              ]}
+            >
+              <Text style={styles.headerTitle}>Welcome back</Text>
+              <Text style={styles.headerSubtitle}>
+                Sign in to your account to continue.
+              </Text>
+            </Animated.View>
+
+            {/* Form */}
+            <Animated.View
+              style={[
+                styles.form,
+                {
+                  opacity: fadeAnim,
+                  transform: [{ translateY }],
+                },
+              ]}
+            >
+              {/* Role Selection */}
+              <View style={styles.roleContainer}>
+                <Text style={styles.roleLabel}>I am a</Text>
+                <View style={styles.roleButtons}>
+                  <TouchableOpacity
+                    style={[
+                      styles.roleButton,
+                      role === "passenger" && styles.roleButtonActive,
+                    ]}
+                    onPress={() => setRole("passenger")}
+                    activeOpacity={0.8}
+                  >
+                    <Text
+                      style={[
+                        styles.roleButtonIcon,
+                        role === "passenger" && styles.roleButtonIconActive,
+                      ]}
+                    >
+                      👤
+                    </Text>
+                    <Text
+                      style={[
+                        styles.roleButtonText,
+                        role === "passenger" && styles.roleButtonTextActive,
+                      ]}
+                    >
+                      Passenger
+                    </Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={[
+                      styles.roleButton,
+                      role === "driver" && styles.roleButtonActive,
+                    ]}
+                    onPress={() => setRole("driver")}
+                    activeOpacity={0.8}
+                  >
+                    <Text
+                      style={[
+                        styles.roleButtonIcon,
+                        role === "driver" && styles.roleButtonIconActive,
+                      ]}
+                    >
+                      🚗
+                    </Text>
+                    <Text
+                      style={[
+                        styles.roleButtonText,
+                        role === "driver" && styles.roleButtonTextActive,
+                      ]}
+                    >
+                      Driver
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
+              {/* Email Input */}
+              <View style={styles.inputGroup}>
+                <Text style={styles.inputLabel}>Email</Text>
+                <TextInput
+                  style={styles.input}
+                  value={email}
+                  onChangeText={setEmail}
+                  placeholder="you@example.com"
+                  placeholderTextColor={theme.colors.textMuted}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  textContentType="emailAddress"
+                  autoComplete="email"
+                  importantForAutofill="yes"
+                />
+              </View>
+
+              {/* Password Input */}
+              <View style={styles.inputGroup}>
+                <Text style={styles.inputLabel}>Password</Text>
+                <TextInput
+                  style={styles.input}
+                  value={password}
+                  onChangeText={setPassword}
+                  placeholder="••••••••"
+                  placeholderTextColor={theme.colors.textMuted}
+                  secureTextEntry
+                  textContentType="password"
+                  autoComplete="password"
+                  importantForAutofill="yes"
+                />
+              </View>
+
+              {/* Error Message */}
+              {error ? (
+                <Text style={styles.errorText}>{error}</Text>
+              ) : null}
+
+              {/* Forgot Password */}
+              <TouchableOpacity style={styles.forgotPassword}>
+                <Text style={styles.forgotPasswordText}>Forgot password?</Text>
+              </TouchableOpacity>
+
+              {/* Sign In Button */}
               <TouchableOpacity
-                style={[styles.roleBtn, role === "passenger" && styles.roleBtnActive]}
-                onPress={() => setRole("passenger")}
-                activeOpacity={0.8}
+                style={[styles.signInButton, loading && styles.signInButtonDisabled]}
+                onPress={handleSignIn}
+                activeOpacity={0.9}
+                disabled={loading}
               >
-                <Text
-                  style={[styles.roleText, role === "passenger" && styles.roleTextActive]}
-                >
-                  {t("auth.passenger")}
+                {loading ? (
+                  <ActivityIndicator color={theme.colors.white} size="small" />
+                ) : (
+                  <Text style={styles.signInButtonText}>
+                    Sign In as {role === "passenger" ? "Passenger" : "Driver"}
+                  </Text>
+                )}
+              </TouchableOpacity>
+
+              {/* Sign Up Link */}
+              <TouchableOpacity
+                style={styles.signUpLink}
+                onPress={() => router.push("/signup")}
+              >
+                <Text style={styles.signUpText}>
+                  Don't have an account?{" "}
+                  <Text style={styles.signUpHighlight}>Sign Up</Text>
                 </Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.roleBtn, role === "driver" && styles.roleBtnActive]}
-                onPress={() => setRole("driver")}
-                activeOpacity={0.8}
-              >
-                <Text
-                  style={[styles.roleText, role === "driver" && styles.roleTextActive]}
-                >
-                  {t("auth.driver")}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        )}
-        <Input
-          label={t("common.email")}
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          placeholder="you@example.com"
-        />
-        <Input
-          label={t("common.password")}
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          placeholder="••••••••"
-        />
-        {error ? <Text style={styles.error}>{error}</Text> : null}
-        <Button label={t("auth.signIn")} onPress={onSubmit} loading={loading} />
-      </View>
-    </Screen>
+            </Animated.View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: theme.fontSize.xl,
-    fontWeight: "700",
-    color: theme.colors.text,
-  },
-  subtitle: {
-    fontSize: theme.fontSize.md,
-    color: theme.colors.textMuted,
-    marginBottom: theme.spacing(3),
-  },
-  form: {
-    marginTop: theme.spacing(1),
-  },
-  roleSwitch: {
-    marginBottom: theme.spacing(2),
-  },
-  roleLabel: {
-    fontSize: theme.fontSize.sm,
-    fontWeight: "600",
-    color: theme.colors.textMuted,
-    marginBottom: theme.spacing(0.5),
-  },
-  roleToggle: {
-    flexDirection: "row",
-    backgroundColor: theme.colors.surfaceContainer,
-    borderRadius: theme.radius.md,
-    padding: 4,
-  },
-  roleBtn: {
+  container: {
     flex: 1,
-    paddingVertical: theme.spacing(1.5),
-    borderRadius: theme.radius.sm,
+    backgroundColor: theme.colors.background,
+  },
+  flex: {
+    flex: 1,
+  },
+  safeArea: {
+    flex: 1,
+    paddingHorizontal: 24,
+  },
+  backButton: {
+    width: 44,
+    height: 44,
+    borderRadius: theme.radius.full,
+    backgroundColor: theme.colors.surfaceContainer,
     alignItems: "center",
+    justifyContent: "center",
+    marginTop: 12,
   },
-  roleBtnActive: {
+  backArrow: {
+    fontSize: 22,
+    color: theme.colors.text,
+    fontWeight: "300",
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingTop: 24,
+    paddingBottom: 40,
+  },
+  brandSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    marginBottom: 40,
+  },
+  brandIconContainer: {
+    width: 36,
+    height: 36,
+    borderRadius: theme.radius.sm,
     backgroundColor: theme.colors.primary,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  roleText: {
-    fontWeight: "600",
-    color: theme.colors.textMuted,
-  },
-  roleTextActive: {
+  brandIcon: {
+    fontSize: 18,
     color: theme.colors.white,
   },
-  error: {
+  brandName: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: theme.colors.primary,
+    letterSpacing: -0.3,
+  },
+  headerSection: {
+    gap: 8,
+    marginBottom: 40,
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: "700",
+    color: theme.colors.text,
+    letterSpacing: -0.5,
+  },
+  headerSubtitle: {
+    fontSize: 16,
+    color: theme.colors.textMuted,
+    lineHeight: 22,
+  },
+  form: {
+    gap: 20,
+  },
+  roleContainer: {
+    gap: 10,
+  },
+  roleLabel: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: theme.colors.text,
+    letterSpacing: 0.3,
+  },
+  roleButtons: {
+    flexDirection: "row",
+    gap: 12,
+  },
+  roleButton: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+    paddingVertical: 14,
+    borderRadius: theme.radius.md,
+    borderWidth: 1.5,
+    borderColor: theme.colors.border,
+    backgroundColor: theme.colors.surface,
+  },
+  roleButtonActive: {
+    borderColor: theme.colors.primary,
+    backgroundColor: theme.colors.surfaceVariant,
+  },
+  roleButtonIcon: {
+    fontSize: 18,
+  },
+  roleButtonIconActive: {
+    // no change needed
+  },
+  roleButtonText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: theme.colors.textMuted,
+  },
+  roleButtonTextActive: {
+    color: theme.colors.primary,
+  },
+  inputGroup: {
+    gap: 8,
+  },
+  inputLabel: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: theme.colors.text,
+    letterSpacing: 0.3,
+  },
+  input: {
+    backgroundColor: theme.colors.surface,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    borderRadius: theme.radius.md,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    fontSize: 16,
+    color: theme.colors.text,
+  },
+  errorText: {
+    fontSize: 13,
     color: theme.colors.danger,
-    marginBottom: theme.spacing(1.5),
+    fontWeight: "500",
+    textAlign: "center",
+  },
+  forgotPassword: {
+    alignSelf: "flex-end",
+  },
+  forgotPasswordText: {
+    fontSize: 14,
+    color: theme.colors.secondary,
+    fontWeight: "500",
+  },
+  signInButton: {
+    backgroundColor: theme.colors.primary,
+    paddingVertical: 16,
+    borderRadius: theme.radius.md,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: theme.colors.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  signInButtonDisabled: {
+    opacity: 0.7,
+  },
+  signInButtonText: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: theme.colors.white,
+  },
+  signUpLink: {
+    alignItems: "center",
+    paddingVertical: 4,
+  },
+  signUpText: {
+    fontSize: 14,
+    color: theme.colors.textMuted,
+  },
+  signUpHighlight: {
+    color: theme.colors.primary,
+    fontWeight: "600",
   },
 });
