@@ -1,0 +1,458 @@
+import React, { useRef, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Animated,
+  TouchableOpacity,
+  SafeAreaView,
+  TextInput,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+  ActivityIndicator,
+  ImageBackground,
+} from "react-native";
+import { useRouter, useLocalSearchParams } from "expo-router";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { theme } from "../styles/theme";
+import { useAuth } from "../hooks/useAuth";
+import type { UserRole } from "../types";
+
+const BACKGROUND_IMAGE =
+  "https://lh3.googleusercontent.com/aida/AP1WRLs8D-BHDyE74Kotu9bgYpQYYnEE2wqy31UV3jd0hnpqVhMppyX5Bad0lgU2VOs_kAQOujA-UGOm3_7rPKyfC7mJwgsCyprp-p82S1f1oB6_qbbb073Ukafe7egIQFANkERHZe3tPWlw_unRjzR54OS7Hfhnl6Hnol-MA4ZcwHxCm0_idm3iJ0SnnXZSYD6eAArWMzcgSsrmiKeWpaYszePcQFt4prJeJd_QGpfchbAZGvCaAoQua8M-e2pG";
+
+export function EmailSignUpScreen() {
+  const router = useRouter();
+  const { role: roleParam } = useLocalSearchParams<{ role?: string }>();
+  const role: UserRole = roleParam === "driver" ? "driver" : "passenger";
+  const { signUp } = useAuth();
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  // Animation values
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const translateY = useRef(new Animated.Value(20)).current;
+
+  React.useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateY, {
+        toValue: 0,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
+
+  const handleSubmit = async () => {
+    if (!name.trim() || !email.trim() || !phone.trim() || !password.trim()) {
+      setError("Please fill in all fields");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    const result = await signUp({
+      name: name.trim(),
+      email: email.trim(),
+      password: password.trim(),
+      phone: phone.trim(),
+      role,
+    });
+    if (result.error) {
+      setError(result.error);
+      setLoading(false);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <ImageBackground
+        source={{ uri: BACKGROUND_IMAGE }}
+        style={styles.backgroundImage}
+        resizeMode="cover"
+      >
+        {/* Dark overlay */}
+        <View style={styles.backgroundOverlay} />
+
+        {/* Decorative circle */}
+        <View style={styles.decorativeCircle} />
+
+        <SafeAreaView style={styles.safeArea}>
+          {/* Back Button - glassmorphism style */}
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => router.back()}
+            activeOpacity={0.8}
+          >
+            <MaterialCommunityIcons
+              name="arrow-left"
+              size={22}
+              color="#1B1B1B"
+            />
+          </TouchableOpacity>
+
+          <KeyboardAvoidingView
+            style={styles.flex}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+          >
+            <ScrollView
+              style={styles.flex}
+              contentContainerStyle={styles.scrollContent}
+              keyboardShouldPersistTaps="handled"
+              showsVerticalScrollIndicator={false}
+            >
+              {/* Brand Logo */}
+              <Animated.View
+                style={[
+                  styles.brandSection,
+                  {
+                    opacity: fadeAnim,
+                    transform: [{ translateY }],
+                  },
+                ]}
+              >
+                <View style={styles.brandIconContainer}>
+                  <MaterialCommunityIcons
+                    name="navigation"
+                    size={20}
+                    color="#FFFFFF"
+                  />
+                </View>
+                <Text style={styles.brandName}>CityRide</Text>
+              </Animated.View>
+
+              {/* Header */}
+              <Animated.View
+                style={[
+                  styles.headerSection,
+                  {
+                    opacity: fadeAnim,
+                    transform: [{ translateY }],
+                  },
+                ]}
+              >
+                <Text style={styles.headerTitle}>Create your account</Text>
+                <Text style={styles.headerSubtitle}>
+                  Fill in your details to get started as a{" "}
+                  {role === "passenger" ? "Passenger" : "Driver"}.
+                </Text>
+              </Animated.View>
+
+              {/* Role Badge */}
+              <Animated.View
+                style={[
+                  styles.roleBadge,
+                  {
+                    opacity: fadeAnim,
+                    transform: [{ translateY }],
+                  },
+                ]}
+              >
+                <Text style={styles.roleBadgeIcon}>
+                  {role === "passenger" ? "👤" : "🚗"}
+                </Text>
+                <Text style={styles.roleBadgeText}>
+                  Signing up as {role === "passenger" ? "Passenger" : "Driver"}
+                </Text>
+              </Animated.View>
+
+              {/* Form */}
+              <Animated.View
+                style={[
+                  styles.form,
+                  {
+                    opacity: fadeAnim,
+                    transform: [{ translateY }],
+                  },
+                ]}
+              >
+                {/* Name Input */}
+                <View style={styles.inputGroup}>
+                  <Text style={styles.inputLabel}>Full Name</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={name}
+                    onChangeText={setName}
+                    placeholder="John Doe"
+                    placeholderTextColor="#848484"
+                    autoCapitalize="words"
+                    textContentType="name"
+                    autoComplete="name"
+                  />
+                </View>
+
+                {/* Email Input */}
+                <View style={styles.inputGroup}>
+                  <Text style={styles.inputLabel}>Email</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={email}
+                    onChangeText={setEmail}
+                    placeholder="you@example.com"
+                    placeholderTextColor="#848484"
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                    textContentType="emailAddress"
+                    autoComplete="email"
+                    importantForAutofill="yes"
+                  />
+                </View>
+
+                {/* Phone Input */}
+                <View style={styles.inputGroup}>
+                  <Text style={styles.inputLabel}>Phone</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={phone}
+                    onChangeText={setPhone}
+                    placeholder="+1 (555) 000-0000"
+                    placeholderTextColor="#848484"
+                    keyboardType="phone-pad"
+                    textContentType="telephoneNumber"
+                    autoComplete="tel"
+                  />
+                </View>
+
+                {/* Password Input */}
+                <View style={styles.inputGroup}>
+                  <Text style={styles.inputLabel}>Password</Text>
+                  <TextInput
+                    style={styles.input}
+                    value={password}
+                    onChangeText={setPassword}
+                    placeholder="••••••••"
+                    placeholderTextColor="#848484"
+                    secureTextEntry
+                    textContentType="newPassword"
+                    autoComplete="new-password"
+                    importantForAutofill="yes"
+                  />
+                </View>
+
+                {/* Error Message */}
+                {error ? (
+                  <Text style={styles.errorText}>{error}</Text>
+                ) : null}
+
+                {/* Submit Button */}
+                <TouchableOpacity
+                  style={[
+                    styles.submitButton,
+                    loading && styles.submitButtonDisabled,
+                  ]}
+                  onPress={handleSubmit}
+                  activeOpacity={0.9}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <ActivityIndicator color="#000000" size="small" />
+                  ) : (
+                    <View style={styles.submitButtonContent}>
+                      <MaterialCommunityIcons
+                        name="email-outline"
+                        size={20}
+                        color="#000000"
+                      />
+                      <Text style={styles.submitButtonText}>
+                        Create Account
+                      </Text>
+                    </View>
+                  )}
+                </TouchableOpacity>
+
+                {/* Terms */}
+                <Text style={styles.termsText}>
+                  By signing up, you agree to our{" "}
+                  <Text style={styles.termsLink}>Terms of Service</Text> and{" "}
+                  <Text style={styles.termsLink}>Privacy Policy</Text>.
+                </Text>
+              </Animated.View>
+            </ScrollView>
+          </KeyboardAvoidingView>
+        </SafeAreaView>
+      </ImageBackground>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#000000",
+  },
+  backgroundImage: {
+    flex: 1,
+    width: "100%",
+  },
+  backgroundOverlay: {
+    ...StyleSheet.absoluteFill,
+    backgroundColor: "rgba(0,0,0,0.7)",
+  },
+  decorativeCircle: {
+    position: "absolute",
+    top: -80,
+    right: -80,
+    width: 240,
+    height: 240,
+    borderRadius: 120,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.15)",
+    opacity: 0.3,
+  },
+  flex: {
+    flex: 1,
+  },
+  safeArea: {
+    flex: 1,
+    paddingHorizontal: 20,
+  },
+  backButton: {
+    width: 44,
+    height: 44,
+    borderRadius: 9999,
+    backgroundColor: "rgba(249,249,249,0.8)",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 12,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 20 },
+    shadowOpacity: 0.08,
+    shadowRadius: 40,
+    elevation: 6,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    paddingTop: 24,
+    paddingBottom: 40,
+  },
+  brandSection: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    marginBottom: 16,
+  },
+  brandIconContainer: {
+    width: 36,
+    height: 36,
+    borderRadius: 8,
+    backgroundColor: "#000000",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  brandName: {
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#FFFFFF",
+    letterSpacing: -0.3,
+  },
+  headerSection: {
+    gap: 8,
+    marginBottom: 16,
+  },
+  headerTitle: {
+    fontSize: 28,
+    fontWeight: "700",
+    color: "#FFFFFF",
+    letterSpacing: -0.5,
+  },
+  headerSubtitle: {
+    fontSize: 16,
+    color: "rgba(255,255,255,0.6)",
+    lineHeight: 22,
+  },
+  roleBadge: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    backgroundColor: "rgba(255,255,255,0.1)",
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    borderRadius: 8,
+    marginBottom: 24,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
+  },
+  roleBadgeIcon: {
+    fontSize: 18,
+  },
+  roleBadgeText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#FFFFFF",
+  },
+  form: {
+    gap: 20,
+  },
+  inputGroup: {
+    gap: 8,
+  },
+  inputLabel: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#FFFFFF",
+    letterSpacing: 0.3,
+  },
+  input: {
+    backgroundColor: "rgba(255,255,255,0.1)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.2)",
+    borderRadius: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    fontSize: 16,
+    color: "#FFFFFF",
+  },
+  errorText: {
+    fontSize: 13,
+    color: "#BA1A1A",
+    fontWeight: "500",
+    textAlign: "center",
+  },
+  submitButton: {
+    backgroundColor: "#FFFFFF",
+    paddingVertical: 16,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 8,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  submitButtonDisabled: {
+    opacity: 0.7,
+  },
+  submitButtonContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  submitButtonText: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#000000",
+  },
+  termsText: {
+    fontSize: 13,
+    color: "rgba(255,255,255,0.5)",
+    textAlign: "center",
+    lineHeight: 18,
+  },
+  termsLink: {
+    color: "#FFFFFF",
+    fontWeight: "600",
+    textDecorationLine: "underline",
+  },
+});
