@@ -45,6 +45,12 @@ const styles = StyleSheet.create({
     fontWeight: "800",
     color: theme.colors.white,
   },
+  subtitle: {
+    fontSize: 12,
+    fontWeight: "600",
+    color: theme.colors.text,
+    letterSpacing: 4.8,
+  },
   tagline: {
     fontSize: theme.fontSize.sm,
     color: theme.colors.white,

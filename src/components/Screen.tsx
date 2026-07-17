@@ -26,12 +26,12 @@ const styles = StyleSheet.create({
   },
   inner: {
     flex: 1,
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
   },
   title: {
-    fontSize: theme.fontSize.xl,
+    fontSize: theme.fontSize["2xl"],
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.primary,
     marginBottom: theme.spacing(2),
   },
 });

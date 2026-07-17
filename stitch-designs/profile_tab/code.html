@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="en" class="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#1a1c1e",
+                    "primary-fixed": "#e2e2e2",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-container-low": "#f3f3f3",
+                    "on-background": "#1b1b1b",
+                    "surface-dim": "#dadada",
+                    "inverse-surface": "#303030",
+                    "secondary-fixed-dim": "#c6c6c9",
+                    "tertiary-container": "#0b1c30",
+                    "surface-variant": "#e2e2e2",
+                    "on-secondary-container": "#616365",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "on-primary-fixed": "#1b1b1b",
+                    "inverse-primary": "#c6c6c6",
+                    "secondary-fixed": "#e2e2e5",
+                    "on-surface": "#1b1b1b",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#454749",
+                    "on-tertiary-container": "#75859d",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "primary": "#000000",
+                    "tertiary": "#000000",
+                    "secondary-container": "#dfdfe2",
+                    "surface-bright": "#f9f9f9",
+                    "primary-container": "#1b1b1b",
+                    "on-surface-variant": "#4c4546",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "surface-tint": "#5e5e5e",
+                    "surface-container": "#eeeeee",
+                    "on-primary-container": "#848484",
+                    "background": "#f9f9f9",
+                    "tertiary-fixed": "#d3e4fe",
+                    "error-container": "#ffdad6",
+                    "surface": "#f9f9f9",
+                    "outline": "#7e7576",
+                    "inverse-on-surface": "#f1f1f1",
+                    "error": "#ba1a1a",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#5d5e61",
+                    "on-error": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#cfc4c5",
+                    "on-primary-fixed-variant": "#474747"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "gutter": "16px",
+                    "margin-mobile": "20px",
+                    "xs": "4px",
+                    "margin-desktop": "40px",
+                    "unit": "4px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "action-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "action-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="flex flex-col min-h-screen">
+<!-- Top App Bar (Shared Component Logic) -->
+<header class="fixed top-4 left-4 right-4 z-50 flex items-center justify-between">
+<div class="bg-surface/80 dark:bg-surface-container/80 backdrop-blur-xl rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.08)] flex items-center justify-center w-12 h-12 active:scale-95 transition-transform hover:bg-surface-container-high cursor-pointer">
+<span class="material-symbols-outlined text-on-surface">menu</span>
+</div>
+<div class="bg-surface/80 backdrop-blur-xl px-6 py-2 rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.08)]">
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Profile</h1>
+</div>
+<div class="w-12"></div> <!-- Spacer for symmetry -->
+</header>
+<main class="flex-grow pt-24 pb-32 px-margin-mobile md:px-margin-desktop max-w-2xl mx-auto w-full">
+<!-- Profile Header Section -->
+<section class="mb-xl text-center">
+<div class="relative inline-block mb-md">
+<div class="w-32 h-32 rounded-full p-1 profile-gradient shadow-xl">
+<img class="w-full h-full rounded-full object-cover border-4 border-surface" data-alt="A professional and elegant headshot of a young South African woman named Sarah Phiri, with a confident smile. She has a minimalist urban background with soft lighting, reflecting a high-end light-mode aesthetic. The photography style is sharp, premium, and clean, using a sophisticated black and white contrast palette that aligns with a minimalist luxury design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0k6_4u8PAfagmG6AfJU8NQ6PEM7KSqVbA2TWggcOzIHa-olz5h3rmqKcVtGxy_dtlUtUQWYyuClMXNT16wZOywiWyERCTKAyTAJ1agHKxRlH9yPMAX_oMYCxBa0v855Czc76Q53Jcc3TLqTzw8uxcYfqeiuwNJTRd7W6MR9gnSbkoJFO5T2g6BTVx101LSup1lMaySfxpY-wpR5TFHXsB4L9Tq1txTeChLGuoQ7j4WGNaA7WCq9TNiGxzAaeKaFP-KSzC-K2SbhjQ">
+</div>
+<div class="absolute bottom-0 right-0 bg-primary text-on-primary px-3 py-1 rounded-full shadow-lg flex items-center gap-1 scale-100">
+<span class="text-label-md font-label-md">4.9</span>
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-xs">Sarah Phiri</h2>
+<p class="font-body-sm text-body-sm text-secondary">Premium Member since 2022</p>
+</section>
+<!-- Profile Navigation Groups -->
+<div class="space-y-lg">
+<!-- Account Group -->
+<div class="space-y-sm">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest px-xs">Account</h3>
+<div class="glass-card rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:scale-[0.99] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">person</span>
+<span class="font-body-lg text-body-lg">Personal Info</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="h-[1px] bg-outline-variant/30 mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:scale-[0.99] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">payments</span>
+<span class="font-body-lg text-body-lg">Payment Methods</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Preferences Group -->
+<div class="space-y-sm">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest px-xs">Preferences</h3>
+<div class="glass-card rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:scale-[0.99] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">directions_car</span>
+<span class="font-body-lg text-body-lg">Ride types</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="h-[1px] bg-outline-variant/30 mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:scale-[0.99] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">language</span>
+<span class="font-body-lg text-body-lg">Language</span>
+</div>
+<span class="font-body-sm text-secondary mr-2">English</span>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Support Group -->
+<div class="space-y-sm">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest px-xs">Support</h3>
+<div class="glass-card rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:scale-[0.99] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">help</span>
+<span class="font-body-lg text-body-lg">Help Center</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="h-[1px] bg-outline-variant/30 mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:scale-[0.99] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">chat_bubble</span>
+<span class="font-body-lg text-body-lg">Contact Us</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Legal Group -->
+<div class="space-y-sm">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest px-xs">Legal</h3>
+<div class="glass-card rounded-xl overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.03)]">
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:scale-[0.99] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">gavel</span>
+<span class="font-body-lg text-body-lg">Terms of Service</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+<div class="h-[1px] bg-outline-variant/30 mx-md"></div>
+<button class="w-full flex items-center justify-between p-md hover:bg-surface-container-low transition-colors active:scale-[0.99] duration-150">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">privacy_tip</span>
+<span class="font-body-lg text-body-lg">Privacy Policy</span>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Log Out Button -->
+<button class="w-full mt-xl py-md px-lg rounded-xl border border-error/20 bg-error/5 text-error font-action-lg text-action-lg hover:bg-error hover:text-on-error transition-all duration-300 active:scale-95 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined">logout</span>
+                Log Out
+            </button>
+</div>
+</main>
+<!-- Bottom Nav Bar (Shared Component Logic) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface/90 backdrop-blur-md border-t border-outline-variant shadow-[0_-8px_24px_rgba(0,0,0,0.05)] flex justify-around items-center px-6 py-4">
+<!-- Explore -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:opacity-80 transition-opacity active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">explore</span>
+</a>
+<!-- Activity -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:opacity-80 transition-opacity active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined">history</span>
+</a>
+<!-- Payments (mapped from JSON but typically separate, here just part of nav shell) -->
+
+<!-- Profile (Active State) -->
+<a class="flex flex-col items-center justify-center text-primary hover:opacity-80 transition-opacity active:scale-90 duration-150" href="#">
+<div class="relative">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"></div>
+</div>
+</a>
+</nav>
+<script>
+        // Simple scroll effect for Top Bar
+        const header = document.querySelector('header h1').parentElement;
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+        });
+
+        // Click interaction for log out
+        document.querySelector('button.text-error').addEventListener('click', () => {
+            if(confirm('Are you sure you want to log out of CityRide?')) {
+                alert('Logging out...');
+            }
+        });
+    </script>
+
+</body></html>

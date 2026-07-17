@@ -3,8 +3,6 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-nati
 import { useTranslation } from "react-i18next";
 import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
-import { Screen } from "../components/Screen";
-import { StatusBadge } from "../components/StatusBadge";
 import { useAuth } from "../hooks/useAuth";
 import { useBookings } from "../hooks/useBookings";
 import { formatFare, formatTimestamp } from "../utils/format";
@@ -30,7 +28,11 @@ export function BookingHistoryScreen() {
     router.push({ pathname: "/booking/[id]", params: { id } });
 
   return (
-    <Screen title={t("history.title")}>
+    <View style={styles.container}>
+      <View style={styles.titleBar}>
+        <Text style={styles.title}>{t("history.title")}</Text>
+      </View>
+
       <View style={styles.tabs}>
         <TabButton
           label={t("history.past")}
@@ -59,7 +61,7 @@ export function BookingHistoryScreen() {
                 <MaterialIcons
                   name="map"
                   size={28}
-                  color={theme.colors.textMuted}
+                  color={theme.colors.onSurfaceVariant}
                 />
               </View>
               <View style={styles.body}>
@@ -67,7 +69,7 @@ export function BookingHistoryScreen() {
                   <Text style={styles.dest} numberOfLines={1}>
                     {b.destination}
                   </Text>
-                  <Text style={styles.fare}>{formatFare(b.fare)}</Text>
+                  <Text style={styles.fare} numberOfLines={1} ellipsizeMode="tail">{formatFare(b.fare)}</Text>
                 </View>
                 <View style={styles.bottomRow}>
                   <View style={styles.meta}>
@@ -75,7 +77,7 @@ export function BookingHistoryScreen() {
                       <MaterialIcons
                         name="calendar-today"
                         size={14}
-                        color={theme.colors.textMuted}
+                        color={theme.colors.onSurfaceVariant}
                       />
                       <Text style={styles.date}>{formatTimestamp(b.createdAt)}</Text>
                     </View>
@@ -83,14 +85,13 @@ export function BookingHistoryScreen() {
                       {t("history.driver", { name: b.driverName ?? "—" })}
                     </Text>
                   </View>
-                  <StatusBadge status={b.status} />
                 </View>
               </View>
             </TouchableOpacity>
           ))
         )}
       </ScrollView>
-    </Screen>
+    </View>
   );
 }
 
@@ -114,11 +115,26 @@ function TabButton({
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.background,
+  },
+  titleBar: {
+    paddingHorizontal: 20,
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(2),
+  },
+  title: {
+    fontSize: theme.fontSize["2xl"],
+    fontWeight: "700",
+    color: theme.colors.primary,
+  },
   tabs: {
     flexDirection: "row",
-    backgroundColor: theme.colors.surfaceContainer,
+    backgroundColor: theme.colors.surfaceContainerLow,
     borderRadius: theme.radius.md,
     padding: 4,
+    marginHorizontal: 20,
     marginBottom: theme.spacing(2),
   },
   tab: {
@@ -138,12 +154,13 @@ const styles = StyleSheet.create({
   tabText: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
   },
   tabTextActive: {
     color: theme.colors.primary,
   },
   list: {
+    paddingHorizontal: 20,
     paddingBottom: theme.spacing(2),
   },
   card: {
@@ -155,7 +172,7 @@ const styles = StyleSheet.create({
     padding: theme.spacing(2),
     marginBottom: theme.spacing(2),
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.outlineVariant,
     shadowColor: "#000",
     shadowOpacity: 0.04,
     shadowRadius: 12,
@@ -182,13 +199,14 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: theme.fontSize.md,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
     marginRight: theme.spacing(1),
   },
   fare: {
     fontSize: theme.fontSize.md,
     fontWeight: "700",
     color: theme.colors.primary,
+    flexShrink: 0,
   },
   bottomRow: {
     flexDirection: "row",
@@ -206,15 +224,15 @@ const styles = StyleSheet.create({
   },
   date: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
   },
   driver: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     marginTop: 2,
   },
   empty: {
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     fontSize: theme.fontSize.md,
   },
 });

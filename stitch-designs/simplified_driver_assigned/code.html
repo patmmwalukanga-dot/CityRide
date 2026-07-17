@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ride Status - Driver Assigned</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1b1b1b",
+                    "primary": "#000000",
+                    "surface-container-low": "#f3f3f3",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary-fixed": "#1b1b1b",
+                    "surface-bright": "#f9f9f9",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#474747",
+                    "surface-tint": "#5e5e5e",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#e2e2e5",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-tertiary-container": "#75859d",
+                    "background": "#f9f9f9",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#303030",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-secondary-fixed": "#1a1c1e",
+                    "tertiary-fixed": "#d3e4fe",
+                    "tertiary-container": "#0b1c30",
+                    "inverse-primary": "#c6c6c6",
+                    "on-surface-variant": "#4c4546",
+                    "tertiary": "#000000",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "surface-container": "#eeeeee",
+                    "surface-dim": "#dadada",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#7e7576",
+                    "on-secondary-fixed-variant": "#454749",
+                    "on-primary-container": "#848484",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#e2e2e2",
+                    "on-surface": "#1b1b1b",
+                    "outline-variant": "#cfc4c5",
+                    "surface-variant": "#e2e2e2",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f1f1f1",
+                    "secondary": "#5d5e61",
+                    "surface": "#f9f9f9",
+                    "on-background": "#1b1b1b",
+                    "on-secondary-container": "#616365",
+                    "secondary-container": "#dfdfe2",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c6c6c9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "margin-mobile": "20px",
+                    "sm": "8px",
+                    "unit": "4px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "action-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "action-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .map-container {
+            background-color: #f3f3f3;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg overflow-hidden h-screen flex flex-col">
+<!-- Top Navigation -->
+<nav class="fixed top-4 left-4 z-50">
+<button class="flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-lg text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</nav>
+<!-- Main Map Canvas -->
+<main class="flex-1 relative w-full h-full map-container overflow-hidden">
+<!-- Mock Map Visuals -->
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover grayscale opacity-60" data-alt="A clean, minimalist grayscale digital map of an urban environment with soft lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCj2OU4-nbKsyFi86CSTWDe7EJUw5S_oZhu1u6SdjGJVX0_XuAcHXfiM-88yuxzbt8foqyu4di-tTczWe-aVTRRYcah8ov2PdoHRqUIi49SlT9ra0x-ShR7Fz00SUc-aK-Px2Bh1RZbW4d0J12rnmIXXsB_rlE6-LUc0NmX8lWV2r-zuZDBAk04DVzRg_SXTf8hjtp5xpAMaYXSI1w-_vsc6BDLG2JVeDYGvVVdaGfNpjckXOU-Olijdi2qBN9v5hMOo3zTd-ZyAXXW"/>
+</div>
+<!-- Simplified Route Path -->
+<svg class="absolute inset-0 w-full h-full z-10 pointer-events-none">
+<path class="opacity-40" d="M100,600 Q200,500 320,350" fill="none" stroke="black" stroke-dasharray="6,6" stroke-width="3"></path>
+</svg>
+<!-- Moving Driver Icon -->
+<div class="absolute z-20 transition-all duration-[2000ms] ease-linear" id="driver-car" style="left: 15%; top: 65%; transform: rotate(-45deg);">
+<div class="bg-primary p-2 rounded shadow-xl text-white">
+<span class="material-symbols-outlined text-[20px]">directions_car</span>
+</div>
+</div>
+<!-- Pickup Pin -->
+<div class="absolute z-20" style="left: 320px; top: 350px; transform: translate(-50%, -100%);">
+<div class="bg-primary w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow-md">
+<div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+</div>
+</div>
+<!-- Simplified Status Banner -->
+<div class="absolute top-4 left-1/2 -translate-x-1/2 z-50">
+<div class="bg-primary text-white px-5 py-2.5 rounded-full shadow-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-[18px]">near_me</span>
+<span class="font-label-md text-label-md whitespace-nowrap uppercase tracking-wider">Arriving in 2 mins</span>
+</div>
+</div>
+</main>
+<!-- Simplified Driver Profile Card -->
+<section class="fixed bottom-0 left-0 w-full z-40 px-4 pb-10">
+<div class="max-w-md mx-auto glass-panel rounded-[32px] shadow-2xl p-6 border border-white/50">
+<!-- Drag Handle -->
+<div class="w-10 h-1 bg-outline-variant/20 rounded-full mx-auto mb-6"></div>
+<div class="flex items-center gap-5">
+<!-- Essential Info: Profile & Rating -->
+<div class="relative flex-shrink-0">
+<div class="w-16 h-16 rounded-2xl overflow-hidden bg-surface-container border border-surface-variant">
+<img class="w-full h-full object-cover" data-alt="Alex, ride-share driver" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsXOBIK-753ib451IRYqcZfASCQ0-cVerh_9iElgR7OaUySLiRaWubyjSC8z1Q7g0JaK6WrCG4XzHTV-nFLcnOVR5_vLTMqzVoIsqxTfUQNVI2SJ0WP2QG8W9HqFjMKByB5ggfaj_c9UTodekjFimAdECYGv7QJQzEnJzdJdWnwDH4UQV6MnSAwi0pcAuhEcs75f45T4RMWL-KW6lpwblZ2Di8s3I65ymoSXiKTqlNPn9jeoW4_WyCC4qN_fGxWIAaXFt9wNEsmwqE"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-white px-1.5 py-0.5 rounded shadow-sm border border-outline-variant flex items-center gap-0.5">
+<span class="text-[10px] font-bold">4.9</span>
+<span class="material-symbols-outlined text-[10px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Essential Info: Name & Car -->
+<div class="flex-1 min-w-0">
+<h2 class="font-headline-md text-primary truncate">Alex</h2>
+<p class="font-body-sm text-secondary truncate">Silver Toyota Camry • 7XYZ89</p>
+</div>
+<!-- Direct Actions -->
+<div class="flex gap-2">
+<button class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="mt-8">
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4 transition-all duration-1000"></div>
+</div>
+<div class="flex justify-between mt-3 font-label-md text-label-md text-secondary uppercase tracking-tight">
+<span>125 High St.</span>
+<button class="text-error font-bold">Cancel</button>
+</div>
+</div>
+</div>
+</section>
+<script>
+        // Micro-interaction: Move the car icon slightly
+        document.addEventListener('DOMContentLoaded', () => {
+            const car = document.getElementById('driver-car');
+            let progress = 0;
+            const animateMovement = () => {
+                progress += 0.08;
+                const startX = 15;
+                const startY = 65;
+                const endX = 25;
+                const endY = 52;
+                const currentX = startX + (endX - startX) * Math.sin(progress * 0.5);
+                const currentY = startY + (endY - startY) * Math.sin(progress * 0.5);
+                car.style.left = `${currentX}%`;
+                car.style.top = `${currentY}%`;
+                requestAnimationFrame(animateMovement);
+            };
+            setTimeout(animateMovement, 500);
+        });
+    </script>
+</body></html>

@@ -45,10 +45,9 @@ export function DriverProfileScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Top app bar */}
       <View style={[styles.appBar, { paddingTop: insets.top }]}>
         <TouchableOpacity style={styles.menuBtn} activeOpacity={0.8}>
-          <MaterialIcons name="menu" size={24} color={theme.colors.text} />
+          <MaterialIcons name="menu" size={24} color={theme.colors.onSurface} />
         </TouchableOpacity>
         <View style={styles.titlePill}>
           <Text style={styles.titleText}>{t("profile.title")}</Text>
@@ -57,7 +56,6 @@ export function DriverProfileScreen() {
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
-        {/* Header */}
         <View style={styles.header}>
           <View style={styles.avatarWrap}>
             <View style={styles.avatarRing}>
@@ -68,7 +66,7 @@ export function DriverProfileScreen() {
               <MaterialIcons
                 name="star"
                 size={14}
-                color={theme.colors.white}
+                color={theme.colors.onPrimary}
               />
             </View>
           </View>
@@ -76,13 +74,15 @@ export function DriverProfileScreen() {
           <Text style={styles.subtitle}>{t("profile.memberSince")}</Text>
         </View>
 
-        {/* Earnings overview */}
         <View style={styles.section}>
           <Text style={styles.groupTitle}>{t("driverProfile.earningsOverview")}</Text>
           <View style={styles.earnCard}>
             <View style={styles.earnCol}>
               <Text style={styles.earnLabel}>{t("driverProfile.totalEarnings")}</Text>
-              <Text style={styles.earnValue}>ZK 1,250.00</Text>
+              <View style={styles.earnValueWrap}>
+                <Text style={styles.earnCurrency}>ZK</Text>
+                <Text style={styles.earnValue} numberOfLines={1} ellipsizeMode="tail">1,250.00</Text>
+              </View>
             </View>
             <View style={[styles.earnCol, styles.earnCenter]}>
               <Text style={styles.earnLabel}>{t("driverProfile.trips")}</Text>
@@ -95,7 +95,6 @@ export function DriverProfileScreen() {
           </View>
         </View>
 
-        {/* Navigation groups */}
         <NavGroup
           title={t("profile.groupAccount")}
           items={[
@@ -142,9 +141,8 @@ export function DriverProfileScreen() {
           ]}
         />
 
-        {/* Log out */}
         <TouchableOpacity style={styles.logout} onPress={signOut} activeOpacity={0.9}>
-          <MaterialIcons name="logout" size={20} color={theme.colors.danger} />
+          <MaterialIcons name="logout" size={20} color={theme.colors.error} />
           <Text style={styles.logoutText}>{t("profile.signOut")}</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -198,7 +196,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 16,
     paddingBottom: theme.spacing(1),
-    backgroundColor: GLASS,
+    backgroundColor: "rgba(255, 255, 255, 0.85)",
   },
   menuBtn: {
     width: 48,
@@ -229,7 +227,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: theme.fontSize.md,
     fontWeight: "600",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   spacer: {
     width: 48,
@@ -286,7 +284,7 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   ratingText: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontSize: theme.fontSize.sm,
     fontWeight: "700",
   },
@@ -298,7 +296,7 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
   },
   section: {
     marginBottom: theme.spacing(4),
@@ -309,9 +307,7 @@ const styles = StyleSheet.create({
   groupTitle: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
-    textTransform: "uppercase",
-    letterSpacing: 2,
+    color: theme.colors.secondary,
     paddingHorizontal: 4,
     marginBottom: theme.spacing(1.5),
   },
@@ -319,7 +315,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: GLASS,
+    backgroundColor: "rgba(255, 255, 255, 0.85)",
     borderRadius: theme.radius.lg,
     padding: theme.spacing(3),
     shadowColor: "#000",
@@ -330,31 +326,43 @@ const styles = StyleSheet.create({
   },
   earnCol: {
     flex: 1,
-  },
-  earnCenter: {
     alignItems: "center",
   },
+  earnCenter: {
+    borderLeftWidth: 1,
+    borderColor: theme.colors.outlineVariant,
+  },
   earnRight: {
-    alignItems: "flex-end",
+    borderLeftWidth: 1,
+    borderColor: theme.colors.outlineVariant,
   },
   earnLabel: {
-    fontSize: theme.fontSize.sm,
+    fontSize: theme.fontSize.xs,
     fontWeight: "600",
-    color: theme.colors.textMuted,
-    textTransform: "uppercase",
+    color: theme.colors.secondary,
+    marginBottom: theme.spacing(1),
   },
-  earnValue: {
-    fontSize: theme.fontSize.lg,
+  earnValueWrap: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: theme.spacing(0.5),
+  },
+  earnCurrency: {
+    fontSize: theme.fontSize.xl,
     fontWeight: "700",
     color: theme.colors.primary,
-    marginTop: theme.spacing(1),
+  },
+  earnValue: {
+    fontSize: theme.fontSize.xl,
+    fontWeight: "700",
+    color: theme.colors.primary,
   },
   card: {
     backgroundColor: theme.colors.surface,
     borderRadius: theme.radius.md,
     overflow: "hidden",
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.outlineVariant,
   },
   row: {
     flexDirection: "row",
@@ -370,7 +378,7 @@ const styles = StyleSheet.create({
   },
   rowLabel: {
     fontSize: theme.fontSize.md,
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
     fontWeight: "600",
   },
   rowTrail: {
@@ -380,11 +388,11 @@ const styles = StyleSheet.create({
   },
   rowValue: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
   },
   divider: {
     height: 1,
-    backgroundColor: theme.colors.border,
+    backgroundColor: theme.colors.outlineVariant,
     marginHorizontal: theme.spacing(2),
   },
   logout: {
@@ -396,12 +404,12 @@ const styles = StyleSheet.create({
     paddingVertical: theme.spacing(2),
     borderRadius: theme.radius.lg,
     borderWidth: 1,
-    borderColor: theme.colors.danger,
-    backgroundColor: "rgba(198, 40, 40, 0.05)",
+    borderColor: theme.colors.error,
+    backgroundColor: "rgba(186, 26, 26, 0.05)",
   },
   logoutText: {
     fontSize: theme.fontSize.md,
     fontWeight: "600",
-    color: theme.colors.danger,
+    color: theme.colors.error,
   },
 });

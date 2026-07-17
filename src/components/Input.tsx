@@ -50,18 +50,18 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     marginBottom: theme.spacing(0.5),
     fontWeight: "600",
   },
   input: {
     height: 48,
     borderWidth: 1,
-    borderColor: theme.colors.border,
-    borderRadius: theme.radius.md,
+    borderColor: theme.colors.outlineVariant,
+    borderRadius: theme.radius.lg,
     paddingHorizontal: theme.spacing(1.5),
     fontSize: theme.fontSize.md,
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
     backgroundColor: theme.colors.surface,
   },
 });

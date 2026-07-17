@@ -28,4 +28,6 @@ export interface Booking {
   fare?: number;
   createdAt: number;
   updatedAt: number;
+  vehicle?: string;
+  plate?: string;
 }

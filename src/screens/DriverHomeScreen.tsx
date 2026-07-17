@@ -93,7 +93,6 @@ export function DriverHomeScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Map */}
       <View style={styles.map}>
         <Image
           source={{ uri: MAP_IMAGE }}
@@ -102,12 +101,17 @@ export function DriverHomeScreen() {
         />
       </View>
 
-      {/* Top app bar */}
       <View style={[styles.headerSafe, { paddingTop: insets.top }]}>
         <View style={styles.header}>
           <View style={styles.headerLeft}>
             <Image source={{ uri: DRIVER_AVATAR }} style={styles.headerAvatar} />
-            <Text style={styles.headerTitle}>CityRide Driver</Text>
+            <View style={styles.headerTitles}>
+              <Text style={styles.headerTitle}>CityRide Driver</Text>
+              <View style={styles.onlineRow}>
+                <View style={styles.onlineDot} />
+                <Text style={styles.onlineText}>{t("driverHome.online")}</Text>
+              </View>
+            </View>
           </View>
           <View style={styles.headerRight}>
             <TouchableOpacity style={styles.iconBtn} activeOpacity={0.8}>
@@ -124,7 +128,6 @@ export function DriverHomeScreen() {
         </View>
       </View>
 
-      {/* Online badge */}
       <View style={[styles.onlineBadge, { top: insets.top + 80 }]}>
         <Animated.View
           style={[styles.onlineDot, { opacity: dot }]}
@@ -132,7 +135,6 @@ export function DriverHomeScreen() {
         <Text style={styles.onlineText}>{t("driverHome.online")}</Text>
       </View>
 
-      {/* Vehicle marker */}
       <View style={styles.markerWrap}>
         <Animated.View
           style={[
@@ -149,7 +151,6 @@ export function DriverHomeScreen() {
         </View>
       </View>
 
-      {/* Bottom interaction zone */}
       <View style={[styles.bottomZone, { paddingBottom: insets.bottom || theme.spacing(3) }]}>
         {online ? (
           request ? (
@@ -168,7 +169,7 @@ export function DriverHomeScreen() {
               >
                 <View style={styles.reqInfo}>
                   <Text style={styles.reqTitle}>{t("driverHome.newRequest")}</Text>
-                  <Text style={styles.reqSub}>
+                  <Text style={styles.reqSub} numberOfLines={1} ellipsizeMode="tail">
                     {`${formatFare(request.fare ?? 65)} • ${t("booking.minAway", { min: 5 })}`}
                   </Text>
                 </View>
@@ -190,7 +191,6 @@ export function DriverHomeScreen() {
           </View>
         )}
 
-        {/* Stats */}
         <View style={styles.statsCard}>
           <View style={[styles.statCol, styles.statLeft]}>
             <Text style={styles.statLabel}>{t("driverHome.rides")}</Text>
@@ -210,7 +210,6 @@ export function DriverHomeScreen() {
           </View>
         </View>
 
-        {/* Online / Offline toggle */}
         <TouchableOpacity
           style={styles.offlineBtn}
           onPress={() => setOnline((o) => !o)}
@@ -219,7 +218,7 @@ export function DriverHomeScreen() {
           <MaterialIcons
             name="power-settings-new"
             size={22}
-            color={theme.colors.white}
+            color={theme.colors.onPrimary}
           />
           <Text style={styles.offlineText}>
             {online ? t("driverHome.goOffline") : t("driverHome.goOnline")}
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: theme.colors.surfaceContainer,
+    backgroundColor: theme.colors.surfaceContainerLow,
   },
   mapImage: {
     width: "100%",
@@ -254,7 +253,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 50,
-    backgroundColor: GLASS_SURFACE,
+    backgroundColor: "rgba(249, 249, 249, 0.82)",
   },
   header: {
     flexDirection: "row",
@@ -276,6 +275,9 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.primary,
     backgroundColor: theme.colors.surfaceVariant,
   },
+  headerTitles: {
+    flexDirection: "column",
+  },
   headerTitle: {
     fontSize: theme.fontSize.lg,
     fontWeight: "700",
@@ -288,6 +290,12 @@ const styles = StyleSheet.create({
   },
   iconBtn: {
     padding: 4,
+  },
+  onlineRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: theme.spacing(0.5),
+    marginTop: 2,
   },
   onlineBadge: {
     position: "absolute",
@@ -314,11 +322,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.success,
   },
   onlineText: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    textTransform: "uppercase",
-    letterSpacing: 1,
   },
   markerWrap: {
     position: "absolute",
@@ -368,7 +374,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: GLASS,
+    backgroundColor: "rgba(255, 255, 255, 0.85)",
     borderRadius: theme.radius.lg,
     padding: theme.spacing(2),
     borderWidth: 1,
@@ -388,11 +394,11 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.sm,
   },
   reqSub: {
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurface,
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    textTransform: "uppercase",
     marginTop: 2,
+    flexShrink: 0,
   },
   acceptBtn: {
     backgroundColor: theme.colors.success,
@@ -402,14 +408,14 @@ const styles = StyleSheet.create({
     marginLeft: theme.spacing(2),
   },
   acceptText: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontWeight: "600",
     fontSize: theme.fontSize.md,
     letterSpacing: 0.5,
   },
   statsCard: {
     flexDirection: "row",
-    backgroundColor: GLASS,
+    backgroundColor: "rgba(255, 255, 255, 0.85)",
     borderRadius: theme.radius.lg,
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.2)",
@@ -436,8 +442,8 @@ const styles = StyleSheet.create({
   statLabel: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
-    textTransform: "uppercase",
+    color: theme.colors.onSurface,
+    marginBottom: theme.spacing(0.5),
   },
   statValue: {
     fontSize: theme.fontSize.lg,
@@ -469,10 +475,8 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   offlineText: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontWeight: "600",
     fontSize: theme.fontSize.lg,
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
   },
 });

@@ -30,12 +30,12 @@ export function RatingScreen({ bookingId }: { bookingId: string }) {
 
       <View style={styles.card}>
         <View style={styles.check}>
-          <MaterialIcons name="check" size={28} color={theme.colors.white} />
+          <MaterialIcons name="check" size={28} color={theme.colors.onPrimary} />
         </View>
 
         <View style={styles.fareBlock}>
           <Text style={styles.fareLabel}>{t("rating.finalFare")}</Text>
-          <Text style={styles.fareValue}>
+          <Text style={styles.fareValue} numberOfLines={1} ellipsizeMode="tail">
             {fare != null ? formatFare(fare) : "—"}
           </Text>
         </View>
@@ -53,7 +53,7 @@ export function RatingScreen({ bookingId }: { bookingId: string }) {
                 <MaterialIcons
                   name="star"
                   size={36}
-                  color={n <= rating ? theme.colors.primary : theme.colors.border}
+                  color={n <= rating ? theme.colors.primary : theme.colors.surfaceContainerHighest}
                 />
               </TouchableOpacity>
             ))}
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: theme.colors.surfaceContainer,
+    backgroundColor: theme.colors.surfaceContainerLow,
   },
   dim: {
     position: "absolute",
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     width: "100%",
     maxWidth: 360,
     marginHorizontal: theme.spacing(3),
-    backgroundColor: theme.colors.surface,
+    backgroundColor: theme.colors.surfaceContainerLowest,
     borderRadius: theme.radius.lg,
     padding: theme.spacing(4),
     alignItems: "center",
@@ -121,14 +121,14 @@ const styles = StyleSheet.create({
   fareLabel: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
-    textTransform: "uppercase",
-    letterSpacing: 2,
+    color: theme.colors.onSurface,
+    marginBottom: 4,
   },
   fareValue: {
     fontSize: 40,
     fontWeight: "700",
     color: theme.colors.primary,
+    flexShrink: 0,
   },
   starsBlock: {
     alignItems: "center",
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   ratePrompt: {
     fontSize: theme.fontSize.md,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     textAlign: "center",
   },
   stars: {
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing(1),
   },
   doneText: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontSize: theme.fontSize.lg,
     fontWeight: "700",
   },

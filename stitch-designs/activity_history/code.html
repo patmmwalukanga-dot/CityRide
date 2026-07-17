@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="en" class="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "error-container": "#ffdad6",
+                "surface-bright": "#f9f9f9",
+                "primary-fixed": "#e2e2e2",
+                "on-secondary-fixed": "#1a1c1e",
+                "on-secondary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "secondary-container": "#dfdfe2",
+                "on-tertiary": "#ffffff",
+                "on-primary-container": "#848484",
+                "surface-container-low": "#f3f3f3",
+                "outline": "#7e7576",
+                "primary-fixed-dim": "#c6c6c6",
+                "surface": "#f9f9f9",
+                "on-secondary-container": "#616365",
+                "tertiary-fixed": "#d3e4fe",
+                "primary": "#000000",
+                "on-error": "#ffffff",
+                "on-tertiary-fixed-variant": "#38485d",
+                "inverse-primary": "#c6c6c6",
+                "on-background": "#1b1b1b",
+                "surface-variant": "#e2e2e2",
+                "surface-container-highest": "#e2e2e2",
+                "secondary-fixed": "#e2e2e5",
+                "on-tertiary-container": "#75859d",
+                "on-surface-variant": "#4c4546",
+                "error": "#ba1a1a",
+                "inverse-surface": "#303030",
+                "surface-dim": "#dadada",
+                "tertiary-fixed-dim": "#b7c8e1",
+                "on-primary-fixed": "#1b1b1b",
+                "on-primary": "#ffffff",
+                "primary-container": "#1b1b1b",
+                "background": "#f9f9f9",
+                "tertiary-container": "#0b1c30",
+                "surface-container": "#eeeeee",
+                "on-error-container": "#93000a",
+                "on-surface": "#1b1b1b",
+                "inverse-on-surface": "#f1f1f1",
+                "outline-variant": "#cfc4c5",
+                "secondary": "#5d5e61",
+                "on-primary-fixed-variant": "#474747",
+                "on-tertiary-fixed": "#0b1c30",
+                "surface-tint": "#5e5e5e",
+                "tertiary": "#000000",
+                "surface-container-high": "#e8e8e8",
+                "secondary-fixed-dim": "#c6c6c9",
+                "on-secondary-fixed-variant": "#454749"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "unit": "4px",
+                "margin-desktop": "40px",
+                "xs": "4px",
+                "sm": "8px",
+                "lg": "24px",
+                "margin-mobile": "20px",
+                "gutter": "16px",
+                "md": "16px",
+                "xl": "32px"
+            },
+            "fontFamily": {
+                "headline-md": ["Inter"],
+                "body-lg": ["Inter"],
+                "label-md": ["Inter"],
+                "action-lg": ["Inter"],
+                "headline-lg-mobile": ["Inter"],
+                "headline-lg": ["Inter"],
+                "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                "action-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    }catch(_e){}</script><meta charset="utf-8"></head><body class="font-body-lg text-on-background selection:bg-primary-fixed antialiased">
+<!-- Top AppBar (from Shared Components) -->
+<header class="fixed top-4 left-4 z-50 bg-surface/80 dark:bg-surface-container/80 backdrop-blur-xl rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.08)]">
+<button class="flex items-center justify-center w-12 h-12 text-on-surface active:scale-95 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="min-h-screen pb-32">
+<!-- Hero Section / Title -->
+<div class="pt-24 px-margin-mobile md:px-margin-desktop mb-lg">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Activity</h1>
+</div>
+<!-- Tab Bar -->
+<div class="px-margin-mobile md:px-margin-desktop mb-lg">
+<div class="flex bg-surface-container-low p-1 rounded-xl">
+<button class="flex-1 py-3 px-4 rounded-lg font-action-lg text-body-sm text-center bg-white shadow-sm text-primary transition-all">
+                    Past
+                </button>
+<button class="flex-1 py-3 px-4 rounded-lg font-action-lg text-body-sm text-center text-on-surface-variant hover:text-primary transition-all">
+                    Upcoming
+                </button>
+</div>
+</div>
+<!-- Activity List -->
+<div class="space-y-sm px-margin-mobile md:px-margin-desktop">
+<!-- Trip Entry: Alex (Continuity) -->
+<div class="group bg-white p-md rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] border border-outline-variant/30 flex items-center gap-md active:scale-[0.98] transition-transform cursor-pointer">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-variant">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="A clean, minimalist 3D map showing a single ride route through a modern urban center. The style is professional and high-contrast, featuring deep blacks for roads and a bright Arctic White background. Soft ambient lighting highlights a single white vehicle icon moving along a Zambian city boulevard." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUKPhyTm-PXy1rT_ZZ-tIfuth_ne9uEcdkEUBUcswdy2L1QLKt2UK8wCXuSAvoqOf35pOna7_nI8EkIwToXPt_r-CDkorbT64xAuxzF5BMlXs2evSJ3_0UvhnBhUMaNMFUDToBoKxfBINfE6tfXsqzXB7V86nQRk_hqXtAGtEUb8HlJ02ScZmL9uvNAKgoZvyX8XnIAVhWIQiIK_v2g03ZQqmdg4yrKjLU6SFbCfGt9HL1iBTUZdVefGa8xcuOIu5TgUrOmq8Aa-sh')"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-body-lg text-primary">Downtown Mall</h3>
+<span class="font-headline-md text-body-lg text-primary">ZK 45.00</span>
+</div>
+<div class="flex justify-between items-end mt-xs">
+<div class="space-y-1">
+<p class="font-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                Oct 24, 10:30 AM
+                            </p>
+<p class="font-label-md text-label-md text-on-surface-variant">Driver: Alex • Toyota Corolla</p>
+</div>
+<span class="px-2 py-1 bg-surface-container-highest rounded text-[10px] font-bold uppercase tracking-wider text-secondary">Completed</span>
+</div>
+</div>
+</div>
+<!-- Trip Entry: Home -->
+<div class="group bg-white p-md rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] border border-outline-variant/30 flex items-center gap-md active:scale-[0.98] transition-transform cursor-pointer">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-variant">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="A top-down stylized digital map of a residential neighborhood with clean, geometric structures. The aesthetic is high-end midnight velocity, utilizing high-contrast black and white tones. Subtle gray shadows define the topography of a quiet Zambian suburb under bright, clear daylight." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCcsNkeQT7g8jE7zYw8bpTKHPO7ThAF803SLA_PO0fX7Ku6BfFT6Hh3RQVe7Ya_KBokR2dz56m_S6MY0oP0EFGXnTGbb5YaeOsZeuQIcUw8n-EzjqZAXpdPKbTDrV2OhWnfabzqetl5bSuN4YW4BfyzIp9fhmag758-sMJ9r3f-M5GXBJs08wfNkZteB6xOuqGcSCaL_pjY11R6hzGxEmJO_s8LQ-iX8QTzVdaYLFBADE69udC5yN7GNIiMCiy8DqyUe4n6YrHWXYLC')"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-body-lg text-primary">Home</h3>
+<span class="font-headline-md text-body-lg text-primary">ZK 32.00</span>
+</div>
+<div class="flex justify-between items-end mt-xs">
+<div class="space-y-1">
+<p class="font-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                Oct 23, 06:15 PM
+                            </p>
+<p class="font-label-md text-label-md text-on-surface-variant">Driver: Sarah • Honda Fit</p>
+</div>
+<span class="px-2 py-1 bg-surface-container-highest rounded text-[10px] font-bold uppercase tracking-wider text-secondary">Completed</span>
+</div>
+</div>
+</div>
+<!-- Trip Entry: Work -->
+<div class="group bg-white p-md rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] border border-outline-variant/30 flex items-center gap-md active:scale-[0.98] transition-transform cursor-pointer">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-variant">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="A minimalist architectural render of a commercial business district map. The visual style follows a premium black-and-white aesthetic with sharp lines and smooth tonal transitions. The focus is on a central skyscraper cluster representing a workplace destination in Lusaka, Zambia." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDt7qcSMmCbQFL67AweybMbNW_t_2uZ9dff3ss29QFsSvabYtYMgilMDJs8KlkbNNepCTqMYkDqM9XVy-0Sy3YWu1xbYQqP64DZBLsu85Bc27XlMmtKVgJo591Z5CZ4kPSQz56S2DMNkf80UQTQfcg66Umk2Sbvn3JGZrLQvjr8Vkt3Ce0BlJCILsUaJK1lhojt0i8Hfa9CjZfBwaVnioBGSl9Q0ZRTNlBQvSOpzqVYXeOY8NzEPqwlcTfvcHo9bFTzdpAVdP7yhszm')"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-body-lg text-primary">Work</h3>
+<span class="font-headline-md text-body-lg text-primary">ZK 42.00</span>
+</div>
+<div class="flex justify-between items-end mt-xs">
+<div class="space-y-1">
+<p class="font-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                Oct 23, 08:00 AM
+                            </p>
+<p class="font-label-md text-label-md text-on-surface-variant">Driver: Mwaba • Nissan Note</p>
+</div>
+<span class="px-2 py-1 bg-surface-container-highest rounded text-[10px] font-bold uppercase tracking-wider text-secondary">Completed</span>
+</div>
+</div>
+</div>
+<!-- Trip Entry: Airport -->
+<div class="group bg-white p-md rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.02)] border border-outline-variant/30 flex items-center gap-md active:scale-[0.98] transition-transform cursor-pointer">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-variant">
+<div class="absolute inset-0 w-full h-full bg-cover bg-center" data-alt="A clean, abstract vector map of an airport terminal and runway layout. Designed in a sophisticated high-contrast light mode with Midnight accents. Soft shadows and glassmorphic depth effects suggest a premium travel experience in a modern Zambian transit hub." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDD5RCgMFxcj6cQkmJddF7ycxDSCjfxxssWwOxK6m4ZirJxEBF_n2HwhBmAwqI0Tw7i2C8dha8usEeTNcRKfqajZ7BRQ5Keodajzx5SIARPeXfv1Er-0KWQKU-U264a7ioN9sAkmotBjgzBUvrY5eytdNRsxA0zX_IkzZzKgZEOnNqmH1X2dzjPrTfIOPzwmeVMHbylBQNarg-nnYdJ9JlcFd6WU_g-P7HTmxltKfmAHd6ijhVneJEHqhXp8Mkcvq4C0yVx3NqLCcRJ')"></div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-body-lg text-primary">KKIA Airport</h3>
+<span class="font-headline-md text-body-lg text-primary">ZK 120.00</span>
+</div>
+<div class="flex justify-between items-end mt-xs">
+<div class="space-y-1">
+<p class="font-body-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                Oct 21, 04:30 AM
+                            </p>
+<p class="font-label-md text-label-md text-on-surface-variant">Driver: John • Toyota Prado</p>
+</div>
+<span class="px-2 py-1 bg-surface-container-highest rounded text-[10px] font-bold uppercase tracking-wider text-secondary">Completed</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State Buffer for Scroll -->
+<div class="h-12"></div>
+</main>
+<!-- Bottom Navigation Bar (from Shared Components JSON) -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface/90 backdrop-blur-md border-t border-outline-variant shadow-[0_-8px_24px_rgba(0,0,0,0.05)]">
+<div class="flex justify-around items-center px-6 py-4">
+<!-- Explore (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:opacity-80 transition-opacity active:scale-90 duration-150">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-md text-label-md mt-1">Explore</span>
+</button>
+<!-- History / Activity (Active - CRITICAL Semantic Mapping) -->
+<button class="flex flex-col items-center justify-center text-primary hover:opacity-80 transition-opacity active:scale-90 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-md text-label-md mt-1">Activity</span>
+</button>
+<!-- Payments (Inactive) -->
+
+<!-- Person / Profile (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:opacity-80 transition-opacity active:scale-90 duration-150">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md mt-1">Profile</span>
+</button>
+</div>
+</nav>
+<script>
+        // Simple micro-interaction for list item hover/click
+        document.querySelectorAll('.group').forEach(item => {
+            item.addEventListener('click', () => {
+                // Potential navigation to trip detail
+                console.log('Viewing trip detail');
+            });
+        });
+    </script>
+
+</body></html>
