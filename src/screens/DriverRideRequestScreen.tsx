@@ -109,7 +109,6 @@ export function DriverRideRequestScreen({ bookingId }: { bookingId: string }) {
 
   return (
     <View style={styles.container}>
-      {/* Map background */}
       <View style={styles.map}>
         <Image
           source={{ uri: MAP_IMAGE }}
@@ -119,7 +118,6 @@ export function DriverRideRequestScreen({ bookingId }: { bookingId: string }) {
         <View style={styles.mapOverlay} />
       </View>
 
-      {/* Top app bar */}
       <View style={[styles.headerSafe, { paddingTop: insets.top }]}>
         <View style={styles.header}>
           <View style={styles.headerLeft}>
@@ -138,23 +136,20 @@ export function DriverRideRequestScreen({ bookingId }: { bookingId: string }) {
         </View>
       </View>
 
-      {/* Request modal */}
       <View style={[styles.main, { paddingTop: insets.top + 80, paddingBottom: insets.bottom + 40 }]}>
         <View style={styles.modal}>
-          {/* Header */}
           <View style={styles.modalHeader}>
             <View style={styles.countdown}>
               <Text style={styles.countdownText}>{timeLeft}</Text>
             </View>
             <Text style={styles.modalLabel}>{t("driverHome.newRequest")}</Text>
-            <Text style={styles.fare}>{fare}</Text>
+            <Text style={styles.fare} numberOfLines={1} ellipsizeMode="tail">{fare}</Text>
             <Text style={styles.fareSub}>
-              <MaterialIcons name="schedule" size={16} color={theme.colors.white} />
+              <MaterialIcons name="schedule" size={16} color={theme.colors.onPrimary} />
               {` ${t("booking.minAway", { min: 5 })} (1.2 km)`}
             </Text>
           </View>
 
-          {/* Route details */}
           <View style={styles.route}>
             <View style={styles.connector} />
             <View style={styles.routeRow}>
@@ -175,7 +170,7 @@ export function DriverRideRequestScreen({ bookingId }: { bookingId: string }) {
                 <MaterialIcons
                   name="location-on"
                   size={22}
-                  color={theme.colors.danger}
+                  color={theme.colors.error}
                 />
               </View>
               <View style={styles.routeText}>
@@ -185,7 +180,6 @@ export function DriverRideRequestScreen({ bookingId }: { bookingId: string }) {
             </View>
           </View>
 
-          {/* Actions */}
           <View style={styles.actions}>
             <TouchableOpacity
               style={styles.acceptBtn}
@@ -207,7 +201,6 @@ export function DriverRideRequestScreen({ bookingId }: { bookingId: string }) {
             </TouchableOpacity>
           </View>
 
-          {/* Tier indicator */}
           <View style={styles.tier}>
             <View style={styles.tierLeft}>
               <MaterialIcons
@@ -236,7 +229,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: theme.colors.surfaceContainer,
+    backgroundColor: theme.colors.surfaceContainerLow,
   },
   mapImage: {
     width: "100%",
@@ -257,7 +250,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 50,
-    backgroundColor: GLASS_SURFACE,
+    backgroundColor: "rgba(249, 249, 249, 0.82)",
   },
   header: {
     flexDirection: "row",
@@ -276,8 +269,8 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: theme.radius.full,
     borderWidth: 1,
-    borderColor: theme.colors.border,
-    backgroundColor: theme.colors.surfaceContainer,
+    borderColor: theme.colors.outlineVariant,
+    backgroundColor: theme.colors.surfaceContainerLow,
   },
   headerTitles: {
     flexDirection: "column",
@@ -301,7 +294,7 @@ const styles = StyleSheet.create({
   onlineText: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
   },
   iconBtn: {
     padding: 4,
@@ -318,7 +311,7 @@ const styles = StyleSheet.create({
   modal: {
     width: "100%",
     maxWidth: 420,
-    backgroundColor: GLASS,
+    backgroundColor: "rgba(255, 255, 255, 0.85)",
     borderRadius: 24,
     overflow: "hidden",
     shadowColor: "#000",
@@ -346,27 +339,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   countdownText: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontSize: theme.fontSize.sm,
     fontWeight: "700",
   },
   modalLabel: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.white,
-    textTransform: "uppercase",
-    letterSpacing: 1,
+    color: theme.colors.onPrimary,
     opacity: 0.7,
     marginBottom: theme.spacing(0.5),
   },
   fare: {
     fontSize: theme.fontSize.xl,
     fontWeight: "700",
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
+    flexShrink: 0,
   },
   fareSub: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     opacity: 0.8,
     marginTop: 2,
     flexDirection: "row",
@@ -402,13 +394,12 @@ const styles = StyleSheet.create({
   routeLabel: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
-    textTransform: "uppercase",
+    color: theme.colors.onSurface,
   },
   routeValue: {
     fontSize: theme.fontSize.md,
     fontWeight: "600",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   actions: {
     paddingHorizontal: theme.spacing(3),
@@ -428,7 +419,7 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   acceptText: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontWeight: "600",
     fontSize: theme.fontSize.lg,
     letterSpacing: 0.5,
@@ -441,10 +432,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 2,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.outlineVariant,
   },
   declineText: {
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     fontWeight: "600",
     fontSize: theme.fontSize.lg,
     letterSpacing: 0.5,
@@ -456,7 +447,7 @@ const styles = StyleSheet.create({
     marginHorizontal: theme.spacing(3),
     marginBottom: theme.spacing(3),
     marginTop: theme.spacing(2),
-    backgroundColor: theme.colors.surfaceContainer,
+    backgroundColor: theme.colors.surfaceContainerLow,
     borderRadius: theme.radius.full,
     paddingVertical: theme.spacing(1.5),
     paddingHorizontal: theme.spacing(2),
@@ -469,7 +460,7 @@ const styles = StyleSheet.create({
   tierText: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
   },
   tierBonus: {
     fontSize: theme.fontSize.sm,
@@ -482,11 +473,11 @@ const styles = StyleSheet.create({
   expiredTitle: {
     fontSize: theme.fontSize.lg,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   expiredSub: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(3),
   },
@@ -497,6 +488,6 @@ const styles = StyleSheet.create({
     padding: theme.spacing(3),
   },
   fallbackText: {
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
   },
 });

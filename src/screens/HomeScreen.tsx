@@ -41,16 +41,16 @@ export function HomeScreen() {
       </View>
 
       <TouchableOpacity
-        style={[styles.menu, { top: insets.top + theme.spacing(3) }]}
+        style={[styles.menu, { top: insets.top + theme.spacing(4) }]}
         activeOpacity={0.8}
       >
-        <MaterialIcons name="menu" size={24} color={theme.colors.text} />
+        <MaterialIcons name="menu" size={24} color={theme.colors.onSurface} />
       </TouchableOpacity>
 
-      <View style={[styles.sheet, { paddingBottom: insets.bottom + theme.spacing(3) }]}>
+      <View style={[styles.sheet, { paddingBottom: insets.bottom + theme.spacing(4) }]}>
         <View style={styles.sheetHeader}>
-          <Text style={styles.title}>{t("home.title")}</Text>
-          <Text style={styles.subtitle}>{t("home.subtitle")}</Text>
+          <Text style={styles.title}>Where are you going?</Text>
+          <Text style={styles.subtitle}>Select a destination to begin.</Text>
         </View>
 
         <View style={styles.searchRow}>
@@ -62,16 +62,16 @@ export function HomeScreen() {
           />
           <TextInput
             style={styles.input}
-            placeholder={t("home.enterDestination")}
-            placeholderTextColor={theme.colors.textMuted}
+            placeholder="Enter destination"
+            placeholderTextColor={theme.colors.onSurfaceVariant}
             value={destination}
             onChangeText={setDestination}
             onSubmitEditing={goBooking}
             returnKeyType="search"
           />
           <TouchableOpacity style={styles.later} onPress={goBooking}>
-            <MaterialIcons name="schedule" size={18} color={theme.colors.white} />
-            <Text style={styles.laterText}>{t("home.later")}</Text>
+            <MaterialIcons name="schedule" size={18} color={theme.colors.onPrimary} />
+            <Text style={styles.laterText}>Later</Text>
           </TouchableOpacity>
         </View>
 
@@ -84,7 +84,7 @@ export function HomeScreen() {
               activeOpacity={0.7}
             >
               <View style={styles.quickIcon}>
-                <MaterialIcons name={p.icon} size={20} color={theme.colors.text} />
+                <MaterialIcons name={p.icon} size={20} color={theme.colors.onSurface} />
               </View>
               <View style={styles.quickText}>
                 <Text style={styles.quickLabel}>{p.label}</Text>
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: theme.colors.surfaceContainer,
+    backgroundColor: theme.colors.surfaceContainerLow,
   },
   userMarkerHalo: {
     position: "absolute",
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     marginTop: -32,
     borderRadius: theme.radius.full,
     backgroundColor: theme.colors.primary,
-    opacity: 0.15,
+    opacity: 0.1,
   },
   userMarker: {
     position: "absolute",
@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
   },
   menu: {
     position: "absolute",
-    top: theme.spacing(3),
     left: theme.spacing(3),
     width: 48,
     height: 48,
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.outlineVariant,
     shadowColor: "#000",
     shadowOpacity: 0.06,
     shadowRadius: 12,
@@ -172,44 +171,43 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     padding: theme.spacing(3),
-    paddingBottom: theme.spacing(3),
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.outlineVariant,
     borderBottomWidth: 0,
     zIndex: 20,
   },
   sheetHeader: {
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(3),
   },
   title: {
-    fontSize: theme.fontSize.xl,
+    fontSize: theme.fontSize["2xl"],
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
     letterSpacing: -0.5,
   },
   subtitle: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     marginTop: theme.spacing(0.5),
   },
   searchRow: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: theme.colors.surfaceContainer,
-    borderRadius: theme.radius.md,
+    backgroundColor: theme.colors.surfaceContainerLow,
+    borderRadius: theme.radius.lg,
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1),
     marginBottom: theme.spacing(2),
   },
   searchIcon: {
-    opacity: 0.5,
+    opacity: 0.4,
   },
   input: {
     flex: 1,
     height: 52,
     paddingHorizontal: theme.spacing(1.5),
     fontSize: theme.fontSize.md,
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   later: {
     flexDirection: "row",
@@ -221,7 +219,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.radius.sm,
   },
   laterText: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
   },
@@ -250,15 +248,15 @@ const styles = StyleSheet.create({
   quickLabel: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   quickAddress: {
     fontSize: 12,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     marginTop: 2,
   },
   quickEta: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
   },
 });

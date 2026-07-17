@@ -91,7 +91,6 @@ export function DriverActiveTripScreen({ bookingId }: { bookingId: string }) {
 
   return (
     <View style={styles.container}>
-      {/* Map layer */}
       <View style={styles.map}>
         <Image
           source={{ uri: MAP_IMAGE }}
@@ -100,7 +99,6 @@ export function DriverActiveTripScreen({ bookingId }: { bookingId: string }) {
         />
       </View>
 
-      {/* Top app bar */}
       <View style={[styles.headerSafe, { paddingTop: insets.top }]}>
         <View style={styles.header}>
           <View style={styles.headerLeft}>
@@ -115,14 +113,13 @@ export function DriverActiveTripScreen({ bookingId }: { bookingId: string }) {
         </View>
       </View>
 
-      {/* Live instruction bar */}
       <View style={[styles.instructionWrap, { top: insets.top + 80 }]}>
         <View style={styles.instruction}>
           <View style={styles.instructionIcon}>
             <MaterialIcons
               name="turn-left"
               size={32}
-              color={theme.colors.white}
+              color={theme.colors.onPrimary}
             />
           </View>
           <View style={styles.instructionBody}>
@@ -135,7 +132,6 @@ export function DriverActiveTripScreen({ bookingId }: { bookingId: string }) {
         </View>
       </View>
 
-      {/* Passenger details sheet */}
       <View style={[styles.sheet, { paddingBottom: insets.bottom + theme.spacing(3) }]}>
         <View style={styles.sheetCard}>
           <View style={styles.handle} />
@@ -176,7 +172,6 @@ export function DriverActiveTripScreen({ bookingId }: { bookingId: string }) {
             </View>
           </View>
 
-          {/* Journey stats */}
           <View style={styles.stats}>
             <View style={styles.statCard}>
               <Text style={styles.statLabel}>{t("active.distance")}</Text>
@@ -188,7 +183,6 @@ export function DriverActiveTripScreen({ bookingId }: { bookingId: string }) {
             </View>
           </View>
 
-          {/* Drop-off */}
           <View style={styles.destRow}>
             <MaterialIcons
               name="location-on"
@@ -202,7 +196,6 @@ export function DriverActiveTripScreen({ bookingId }: { bookingId: string }) {
             </View>
           </View>
 
-          {/* Primary action */}
           <Animated.View
             style={[styles.arrivedWrap, { transform: [{ scale: pulse }] }]}
           >
@@ -231,7 +224,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: theme.colors.surfaceContainer,
+    backgroundColor: theme.colors.surfaceContainerLow,
   },
   mapImage: {
     width: "100%",
@@ -243,7 +236,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     zIndex: 50,
-    backgroundColor: GLASS_SURFACE,
+    backgroundColor: "rgba(249, 249, 249, 0.82)",
   },
   header: {
     flexDirection: "row",
@@ -285,7 +278,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: theme.spacing(3),
-    backgroundColor: GLASS,
+    backgroundColor: "rgba(255, 255, 255, 0.85)",
     borderRadius: theme.radius.lg,
     padding: theme.spacing(2),
     borderWidth: 1,
@@ -320,13 +313,11 @@ const styles = StyleSheet.create({
   instructionLabel: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
-    textTransform: "uppercase",
-    letterSpacing: 1,
+    color: theme.colors.onSurface,
   },
   instructionRoad: {
     fontSize: theme.fontSize.md,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     marginTop: 2,
   },
   sheet: {
@@ -339,7 +330,7 @@ const styles = StyleSheet.create({
     paddingBottom: theme.spacing(3),
   },
   sheetCard: {
-    backgroundColor: GLASS,
+    backgroundColor: "rgba(255, 255, 255, 0.85)",
     borderRadius: 32,
     padding: theme.spacing(3),
     borderWidth: 1,
@@ -354,7 +345,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 4,
     borderRadius: theme.radius.full,
-    backgroundColor: theme.colors.border,
+    backgroundColor: theme.colors.outlineVariant,
     opacity: 0.3,
     alignSelf: "center",
     marginBottom: theme.spacing(2),
@@ -378,7 +369,7 @@ const styles = StyleSheet.create({
   passengerName: {
     fontSize: theme.fontSize.lg,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   ratingRow: {
     flexDirection: "row",
@@ -389,7 +380,7 @@ const styles = StyleSheet.create({
   ratingText: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
   },
   actions: {
     flexDirection: "row",
@@ -400,7 +391,7 @@ const styles = StyleSheet.create({
     height: 48,
     borderRadius: theme.radius.full,
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.outlineVariant,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -411,15 +402,14 @@ const styles = StyleSheet.create({
   },
   statCard: {
     flex: 1,
-    backgroundColor: theme.colors.surfaceContainer,
+    backgroundColor: theme.colors.surfaceContainerLow,
     borderRadius: theme.radius.lg,
     padding: theme.spacing(2),
   },
   statLabel: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
-    textTransform: "uppercase",
+    color: theme.colors.onSurface,
     marginBottom: theme.spacing(0.5),
   },
   statValue: {
@@ -440,13 +430,12 @@ const styles = StyleSheet.create({
   destLabel: {
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
-    textTransform: "uppercase",
+    color: theme.colors.onSurface,
   },
   destValue: {
     fontSize: theme.fontSize.md,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   arrivedWrap: {
     marginTop: theme.spacing(3),
@@ -463,7 +452,7 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   arrivedText: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontSize: theme.fontSize.lg,
     fontWeight: "700",
     letterSpacing: 0.5,
@@ -475,6 +464,6 @@ const styles = StyleSheet.create({
     padding: theme.spacing(3),
   },
   fallbackText: {
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
   },
 });

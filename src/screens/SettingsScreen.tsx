@@ -62,10 +62,8 @@ export function SettingsScreen() {
 const styles = StyleSheet.create({
   label: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurface,
     fontWeight: "600",
-    textTransform: "uppercase",
-    letterSpacing: 1,
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(1),
   },

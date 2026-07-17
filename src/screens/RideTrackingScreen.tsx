@@ -262,7 +262,6 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.sm,
     fontWeight: "700",
     letterSpacing: 0.5,
-    textTransform: "uppercase",
   },
   menu: {
     position: "absolute",
@@ -400,16 +399,12 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
-    color: theme.colors.textMuted,
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
+    color: theme.colors.onSurface,
   },
   cancelText: {
     fontSize: theme.fontSize.sm,
     fontWeight: "700",
-    color: theme.colors.danger,
-    textTransform: "uppercase",
-    letterSpacing: 0.5,
+    color: theme.colors.error,
     marginLeft: theme.spacing(2),
   },
   fallback: {

@@ -1,0 +1,275 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+<title>CityRide Driver - Active Trip</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Load Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "error-container": "#ffdad6",
+                "primary": "#000000",
+                "primary-fixed": "#e2e2e2",
+                "tertiary-container": "#0b1c30",
+                "surface-tint": "#5e5e5e",
+                "on-secondary-container": "#616365",
+                "on-primary": "#ffffff",
+                "surface-container": "#eeeeee",
+                "tertiary-fixed": "#d3e4fe",
+                "surface-container-low": "#f3f3f3",
+                "on-secondary": "#ffffff",
+                "on-error-container": "#93000a",
+                "on-primary-fixed-variant": "#474747",
+                "secondary": "#5d5e61",
+                "on-surface": "#1b1b1b",
+                "on-secondary-fixed": "#1a1c1e",
+                "outline-variant": "#cfc4c5",
+                "inverse-on-surface": "#f1f1f1",
+                "surface-variant": "#e2e2e2",
+                "primary-fixed-dim": "#c6c6c6",
+                "on-primary-fixed": "#1b1b1b",
+                "on-error": "#ffffff",
+                "secondary-container": "#dfdfe2",
+                "tertiary": "#000000",
+                "inverse-surface": "#303030",
+                "surface-container-high": "#e8e8e8",
+                "surface-container-lowest": "#ffffff",
+                "surface-bright": "#f9f9f9",
+                "tertiary-fixed-dim": "#b7c8e1",
+                "outline": "#7e7576",
+                "on-surface-variant": "#4c4546",
+                "on-primary-container": "#848484",
+                "on-tertiary-fixed-variant": "#38485d",
+                "on-secondary-fixed-variant": "#454749",
+                "background": "#f9f9f9",
+                "error": "#ba1a1a",
+                "on-tertiary-container": "#75859d",
+                "surface-container-highest": "#e2e2e2",
+                "secondary-fixed-dim": "#c6c6c9",
+                "inverse-primary": "#c6c6c6",
+                "on-tertiary-fixed": "#0b1c30",
+                "on-tertiary": "#ffffff",
+                "surface-dim": "#dadada",
+                "surface": "#f9f9f9",
+                "on-background": "#1b1b1b",
+                "secondary-fixed": "#e2e2e5",
+                "primary-container": "#1b1b1b"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "md": "16px",
+                "gutter": "16px",
+                "xl": "32px",
+                "margin-desktop": "40px",
+                "margin-mobile": "20px",
+                "xs": "4px",
+                "lg": "24px",
+                "unit": "4px",
+                "sm": "8px"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["Inter"],
+                "action-lg": ["Inter"],
+                "headline-md": ["Inter"],
+                "body-sm": ["Inter"],
+                "headline-lg": ["Inter"],
+                "body-lg": ["Inter"],
+                "label-md": ["Inter"]
+            },
+            "fontSize": {
+                "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                "action-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .map-container {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+        .thumb-zone-bottom {
+            padding-bottom: env(safe-area-inset-bottom, 20px);
+        }
+        /* Custom pulsing animation for the "Arrived" state suggestion */
+        @keyframes pulse-soft {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.02); }
+        }
+        .animate-pulse-soft {
+            animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background overflow-hidden">
+<!-- THE MAP LAYER (Base) -->
+<div class="map-container" data-location="Lusaka, Zambia">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist high-contrast digital map of Lusaka city streets in a light-mode aesthetic. The map features elegant grey road lines, white building footprints, and a clear, bold blue navigation path with a directional arrow. The lighting is bright and professional, mimicking an overcast day for zero glare. The visual style is premium and functional, designed for a driver application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfyMOC-1z9cVGlsfx0RRNoPR41HCz-Z_O5RHu4oo8fbUv8ooRuNGq-W2BQKB52va1T1UqIn1Q781q6ECc9csxFTbKerhmwIGD5d-TFa0Wia3AyyAqUOFOQuVQd5c5nifk7tkvFv6AW55-ZTPcFy5aE06liittinQaaJ93RCw-1CWIKj4BpSY_TzSmrdLemC3RBI--diJodvw75i1G9U3BU2md_CpWPVuGurSOTa_HEs1sxR41YukK2LqijGQ4GxzgBzZ-369yfuYMk">
+</div>
+<!-- TOP NAVIGATION BAR (TopAppBar Anchor) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 dark:bg-surface-container-highest/80 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly Zambian driver in his late 30s wearing a clean white polo shirt. The lighting is bright and high-key, set against a blurred urban background with a soft morning light. The image has a premium, professional feel with a shallow depth of field and a minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_LK49q9A1WIuU2eS7onA553kMGPDPp-WsHURCR_jdVzuU45jxMtN7ZBqAMVxVY2yTxm3kw-RrqxRQs1MfarWyejkRHsyQakwBuQ--QM28FjSHC-0XSjyIswqfSv0frMqpe40xLOmTZ759HVlv7sUPG52cQpE6yRyvBxg0y6CffW87Ge2EV8pfBl2nyjOZ4zSXnLmNtji45YvOW8Kz3mSCFvEv_1iHDS8xdpDrmcdUUdVw3weg3pet_0_x5PFyBe0henE-Lb6Qn9_5">
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">CityRide Driver</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary text-[24px]">sensors</span>
+</div>
+</header>
+<!-- LIVE ACTIVITY / INSTRUCTION BAR -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 w-[calc(100%-40px)] max-w-lg z-40 transition-all duration-300">
+<div class="glass-panel rounded-xl shadow-lg border border-white/50 p-md flex items-center gap-lg">
+<div class="bg-primary text-on-primary w-14 h-14 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-[32px]">turn_left</span>
+</div>
+<div class="flex-1">
+<div class="flex items-baseline gap-xs">
+<span class="font-headline-md text-headline-md text-primary">200m</span>
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Turn Left</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">onto Great East Rd</p>
+</div>
+</div>
+</div>
+<!-- FARE INDICATOR (Floating) -->
+
+<!-- MAIN CONTENT AREA (Bento-style Bottom Sheet) -->
+<main class="fixed bottom-0 left-0 w-full z-50">
+<!-- Floating Surface for Passenger Details -->
+<div class="max-w-2xl mx-auto px-margin-mobile mb-4">
+<div class="glass-panel rounded-2xl shadow-[0_-4px_30px_rgba(0,0,0,0.08)] border border-white/40 p-lg thumb-zone-bottom">
+<!-- Handle Bar -->
+<div class="flex justify-center mb-md">
+<div class="w-10 h-1 bg-outline-variant/30 rounded-full"></div>
+</div>
+<div class="flex flex-col gap-lg">
+<!-- Passenger Info Row -->
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A portrait of a cheerful young professional woman named Sarah, smiling warmly. She is in a modern urban cafe setting with soft, bright light-mode illumination. The color palette is composed of soft whites and neutral grays, highlighting her friendly expression and professional demeanor. High-quality photography with a clean, minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN5ZvQJAnUddBWgPfdn7fRnu8FC5lEK43l8Y9VG2rkAg5T7n8V0PtP2E_VjJwrg8dvcto7rj0y0AMxnIOpAAHqIYmPg0VOypuk-Juu0-KBuOP9B7azSZDVTrTkS0eoXY2aDbWk5-lzPCVawFeSHETE-p161GuRWrVeAh7uKVohtOsTu_yyAjmHjDhQ_ut0sHf7MP1fucEphAZ1im5ngs4FY8SLq7AFGwaiyqwStecvr7zHr6cYoFkqooqeJa10lj4K6jWgGN6hrAfK">
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Sarah</h2>
+<div class="flex items-center gap-xs text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px] fill-current" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md">4.9 Star Rating</span>
+</div>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-outline-variant flex items-center justify-center text-primary hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">call</span>
+</button>
+</div>
+</div>
+<!-- Journey Stats Grid -->
+<div class="grid grid-cols-2 gap-md">
+<div class="bg-surface-container-low rounded-xl p-md">
+<p class="font-label-md text-label-md text-secondary uppercase mb-xs">Distance</p>
+<p class="font-headline-md text-headline-md text-primary">1.2 km</p>
+</div>
+<div class="bg-surface-container-low rounded-xl p-md">
+<p class="font-label-md text-label-md text-secondary uppercase mb-xs">Time</p>
+<p class="font-headline-md text-headline-md text-primary">4 min</p>
+</div>
+</div>
+<!-- Destination Summary -->
+<div class="flex items-start gap-md py-xs">
+<span class="material-symbols-outlined text-primary mt-1">location_on</span>
+<div>
+<p class="font-label-md text-label-md text-secondary uppercase">Drop-off</p>
+<p class="font-body-lg text-body-lg font-bold text-on-surface">East Park Mall, Main Entrance</p>
+</div>
+</div>
+<!-- Primary Action Button -->
+<button class="w-full bg-primary text-on-primary py-lg rounded-xl font-action-lg text-action-lg shadow-lg active:scale-95 transition-all animate-pulse-soft" id="arrived-btn">
+                        ARRIVED
+                    </button>
+</div>
+</div>
+</div>
+<!-- BOTTOM NAV BAR (Navigation Shell) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pb-safe h-20 bg-surface dark:bg-tertiary-container shadow-[0_-4px_20px_rgba(0,0,0,0.08)] rounded-t-xl md:hidden">
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">directions_car</span>
+<span class="font-label-md text-label-md">Home</span>
+</div>
+
+<div class="flex flex-col items-center justify-center text-secondary opacity-70 hover:bg-secondary-container/50 transition-colors">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md">Trips</span>
+</div>
+<div class="flex flex-col items-center justify-center text-secondary opacity-70 hover:bg-secondary-container/50 transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</div>
+</nav>
+</main>
+<!-- MICRO-INTERACTIONS SCRIPT -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const arrivedBtn = document.getElementById('arrived-btn');
+            
+            arrivedBtn.addEventListener('click', () => {
+                // Visual feedback for arrive action
+                arrivedBtn.classList.remove('animate-pulse-soft');
+                arrivedBtn.innerText = 'STARTING TRIP...';
+                arrivedBtn.style.backgroundColor = '#10b981'; // Emerald Green success color
+                
+                setTimeout(() => {
+                    arrivedBtn.innerText = 'TRIP STARTED';
+                    // Here you would normally transition to the "In Progress" view
+                }, 800);
+            });
+
+            // Simulate slight map movement for atmospheric effect
+            const mapImg = document.querySelector('.map-container img');
+            document.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth / 2 - e.pageX) / 50;
+                const y = (window.innerHeight / 2 - e.pageY) / 50;
+                mapImg.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
+            });
+        });
+    </script>
+
+
+</body></html>

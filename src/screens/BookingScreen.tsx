@@ -69,7 +69,7 @@ export function BookingScreen() {
           </Text>
         </View>
         <View style={styles.pill}>
-          <MaterialIcons name="location-on" size={20} color={theme.colors.danger} />
+          <MaterialIcons name="location-on" size={20} color={theme.colors.error} />
           <Text style={styles.pillText} numberOfLines={1}>
             {t("booking.demoDestination")}
           </Text>
@@ -97,20 +97,20 @@ export function BookingScreen() {
                   <Text style={styles.rideName}>{t(ride.nameKey)}</Text>
                   <Text style={styles.rideEta}>{t("booking.minAway", { min: ride.eta })}</Text>
                 </View>
-                <Text style={styles.rideFare}>{`K ${ride.fare.toFixed(2)}`}</Text>
+                <Text style={styles.rideFare} numberOfLines={1} ellipsizeMode="tail">{`ZK ${ride.fare.toFixed(2)}`}</Text>
               </TouchableOpacity>
             );
           })}
 
           <View style={styles.payment}>
             <View style={styles.paymentIcon}>
-              <MaterialIcons name="credit-card" size={18} color={theme.colors.white} />
+              <MaterialIcons name="credit-card" size={18} color={theme.colors.onPrimary} />
             </View>
             <Text style={styles.paymentText}>{t("booking.paymentMethod")}</Text>
             <MaterialIcons
               name="expand-more"
               size={18}
-              color={theme.colors.textMuted}
+              color={theme.colors.onSurfaceVariant}
             />
           </View>
         </ScrollView>
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: theme.colors.surfaceContainer,
+    backgroundColor: theme.colors.surfaceContainerLow,
   },
   mapDot: {
     position: "absolute",
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     borderColor: theme.colors.white,
   },
   mapDotAccent: {
-    backgroundColor: theme.colors.danger,
+    backgroundColor: theme.colors.error,
   },
   pills: {
     position: "absolute",
@@ -171,17 +171,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: theme.spacing(1),
     backgroundColor: theme.colors.surface,
-    borderRadius: theme.radius.md,
+    borderRadius: theme.radius.lg,
     paddingVertical: theme.spacing(1.5),
     paddingHorizontal: theme.spacing(2),
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.outlineVariant,
   },
   pillText: {
     flex: 1,
     fontSize: theme.fontSize.sm,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   sheet: {
     position: "absolute",
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: theme.spacing(3),
     paddingBottom: theme.spacing(3),
     borderWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.outlineVariant,
     borderBottomWidth: 0,
     zIndex: 20,
   },
@@ -204,15 +204,15 @@ const styles = StyleSheet.create({
     width: 40,
     height: 4,
     borderRadius: theme.radius.full,
-    backgroundColor: theme.colors.border,
-    opacity: 0.5,
+    backgroundColor: theme.colors.outlineVariant,
+    opacity: 0.4,
     alignSelf: "center",
     marginVertical: theme.spacing(1),
   },
   heading: {
-    fontSize: theme.fontSize.lg,
+    fontSize: theme.fontSize.xl,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
     marginBottom: theme.spacing(2),
   },
   scroll: {
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     borderColor: "transparent",
   },
   rideSelected: {
-    backgroundColor: theme.colors.surfaceContainer,
+    backgroundColor: theme.colors.surfaceContainerLow,
     borderColor: theme.colors.primary,
   },
   rideIcon: {
@@ -249,17 +249,18 @@ const styles = StyleSheet.create({
   rideName: {
     fontSize: theme.fontSize.md,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   rideEta: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     marginTop: 2,
   },
   rideFare: {
-    fontSize: theme.fontSize.lg,
+    fontSize: theme.fontSize.xl,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
+    flexShrink: 0,
   },
   payment: {
     flexDirection: "row",
@@ -268,13 +269,13 @@ const styles = StyleSheet.create({
     marginTop: theme.spacing(2),
     paddingTop: theme.spacing(2),
     borderTopWidth: 1,
-    borderColor: theme.colors.border,
+    borderColor: theme.colors.outlineVariant,
   },
   paymentIcon: {
     width: 24,
     height: 24,
     borderRadius: theme.radius.sm,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: theme.colors.primaryContainer,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -282,7 +283,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: theme.fontSize.sm,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
     letterSpacing: 1,
   },
   request: {
@@ -294,7 +295,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   requestText: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontSize: theme.fontSize.lg,
     fontWeight: "700",
   },
@@ -320,11 +321,11 @@ const styles = StyleSheet.create({
   overlayTitle: {
     fontSize: theme.fontSize.lg,
     fontWeight: "700",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   overlayText: {
     fontSize: theme.fontSize.sm,
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     textAlign: "center",
   },
 });

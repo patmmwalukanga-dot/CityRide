@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>CityRide Driver - New Ride Request</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "primary": "#000000",
+                    "primary-fixed": "#e2e2e2",
+                    "tertiary-container": "#0b1c30",
+                    "surface-tint": "#5e5e5e",
+                    "on-secondary-container": "#616365",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "tertiary-fixed": "#d3e4fe",
+                    "surface-container-low": "#f3f3f3",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed-variant": "#474747",
+                    "secondary": "#5d5e61",
+                    "on-surface": "#1b1b1b",
+                    "on-secondary-fixed": "#1a1c1e",
+                    "outline-variant": "#cfc4c5",
+                    "inverse-on-surface": "#f1f1f1",
+                    "surface-variant": "#e2e2e2",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-primary-fixed": "#1b1b1b",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#dfdfe2",
+                    "tertiary": "#000000",
+                    "inverse-surface": "#303030",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "outline": "#7e7576",
+                    "on-surface-variant": "#4c4546",
+                    "on-primary-container": "#848484",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-secondary-fixed-variant": "#454749",
+                    "background": "#f9f9f9",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#75859d",
+                    "surface-container-highest": "#e2e2e2",
+                    "secondary-fixed-dim": "#c6c6c9",
+                    "inverse-primary": "#c6c6c6",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dadada",
+                    "surface": "#f9f9f9",
+                    "on-background": "#1b1b1b",
+                    "secondary-fixed": "#e2e2e5",
+                    "primary-container": "#1b1b1b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "16px",
+                    "gutter": "16px",
+                    "xl": "32px",
+                    "margin-desktop": "40px",
+                    "margin-mobile": "20px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "unit": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "action-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "action-lg": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .countdown-circle {
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+        .pulse-active { animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background overflow-hidden h-screen w-screen">
+<!-- Map Background -->
+<div class="fixed inset-0 z-0 h-full w-full">
+<div class="w-full h-full bg-cover bg-center grayscale-[0.2]" data-alt="A detailed aerial view map of Lusaka city streets at twilight, featuring high-contrast dark roads and warm golden street lights. The aesthetic is clean, professional, and minimalist, using a deep midnight blue and slate grey color palette. A subtle digital grid overlay enhances the driver navigation interface feel, reflecting a premium urban professional service." data-location="Lusaka, Zambia" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD2imhw5CQV73Mo_ftbYnC757K0JtxOIBoe39xYMR-25M_5ddZmlBrD4rhXEWJAsHVrL_2Qv8cnze_ucWvbcRF9KZzmgmUqsQQEzoBQCdyzwOTSXYcn16qw-fuW8Slm8fEAh1uQr2NMoakXrxygl9hLIvxLqZ2E8JAxv4OnADNJF9PkHrHMUrU4GdG_41_dd1RFsoQ4VOxaDkjvAujwghUWxHgWlLXisfwBeEzhITAGJoZROJRO3BGdnZ2VjrEqnzrv6HSCgXKJoTcz')">
+</div>
+<!-- Map Overlay Gradient for depth -->
+<div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40"></div>
+</div>
+<!-- Top App Bar (From Shared Components) -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-surface/80 backdrop-blur-md shadow-sm">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a male driver in a sharp uniform, looking confident and friendly. The lighting is studio-quality with soft shadows against a neutral, high-end background. The image maintains a minimalist and authoritative aesthetic with crisp details and a clean urban professional vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBytcQabpP8xaiSeqrqz4XC4zCfxNYDxx45Gg6uQeTVWAxx-_z7Ci2pL_JFcQrBBurI5eghpqumhCzgESJ9EeEh5iZ16_5HHvFreHaKHlMaeZ42Pzah7f8A9uOs1_pam_r0KQH0KBXPLY-GBznhXUzKJ-dnKFRUBz9PwBpGmsRDWFax_ZTyI35hSLXhZBMb4E4peTGFB9oMRtbRYWLiPuxrF0N-pgIcqT3r7EZYpaD6XOH67KKE5pCJr_Kq8LaKdVSLf0WQqRAPA-Tk"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-primary">CityRide Driver</span>
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Online
+                </span>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity active:scale-95">sensors</button>
+</div>
+</header>
+<!-- Main Content Canvas (The Ride Request Modal) -->
+<main class="relative z-10 h-full flex flex-col items-center justify-center px-margin-mobile">
+<!-- Ride Request Modal -->
+<div class="w-full max-w-md glass-panel rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform transition-all duration-300">
+<!-- Header Section -->
+<div class="bg-primary p-lg text-on-primary flex flex-col items-center relative">
+<!-- Countdown Visual -->
+<div class="absolute right-md top-md w-12 h-12">
+<svg class="w-full h-full countdown-circle" viewbox="0 0 36 36">
+<path class="stroke-on-primary/20 fill-none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" stroke-width="3"></path>
+<path class="stroke-on-primary fill-none transition-all duration-1000 ease-linear" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" id="progress-path" stroke-dasharray="100, 100" stroke-width="3"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-label-md font-bold" id="timer-text">15</span>
+</div>
+</div>
+<span class="font-label-md text-label-md uppercase tracking-widest opacity-70 mb-xs">New Request</span>
+<div class="text-center">
+<h2 class="font-headline-lg text-headline-lg mb-xs">ZK 65.00</h2>
+<p class="font-body-sm text-body-sm opacity-80 flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span> 5 min away (1.2 km)
+                    </p>
+</div>
+</div>
+<!-- Route Details -->
+<div class="p-lg space-y-lg">
+<div class="relative flex flex-col gap-lg">
+<!-- Vertical Line Connector -->
+<div class="absolute left-[11px] top-[12px] bottom-[12px] w-0.5 bg-outline-variant/50"></div>
+<!-- Pickup -->
+<div class="flex items-start gap-md">
+<div class="z-10 mt-1">
+<span class="material-symbols-outlined text-primary bg-surface rounded-full">radio_button_checked</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Pickup</span>
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">Levy Junction Mall</span>
+</div>
+</div>
+<!-- Dropoff -->
+<div class="flex items-start gap-md">
+<div class="z-10 mt-1">
+<span class="material-symbols-outlined text-error bg-surface rounded-full">location_on</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Dropoff</span>
+<span class="font-body-lg text-body-lg font-semibold text-on-surface">Kabulonga Shopping Centre</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-md pt-md">
+<button class="w-full py-md bg-primary text-on-primary font-action-lg text-action-lg rounded-xl shadow-lg active:scale-[0.98] transition-transform hover:opacity-90" id="accept-btn">
+                        ACCEPT
+                    </button>
+<button class="w-full py-md bg-transparent text-secondary font-action-lg text-action-lg border-2 border-secondary-container rounded-xl active:scale-[0.98] transition-transform hover:bg-secondary-container/20">
+                        DECLINE
+                    </button>
+</div>
+</div>
+<!-- Tier Indicator -->
+<div class="px-lg pb-md">
+<div class="bg-surface-container-low rounded-full px-md py-sm flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Gold Tier Bonus Applied</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-primary">+ZK 5.00</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav (Hidden on Request Screen per UX Goal, but provided for shell structure if needed) -->
+<!-- Suppressed to prioritize the ride request task-focus -->
+<script>
+        // Countdown Timer Logic
+        let timeLeft = 15;
+        const timerText = document.getElementById('timer-text');
+        const progressPath = document.getElementById('progress-path');
+        const totalTime = 15;
+
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timerText.innerText = timeLeft;
+            
+            // Update circular progress
+            const offset = (timeLeft / totalTime) * 100;
+            progressPath.style.strokeDasharray = `${offset}, 100`;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                // Simple feedback for timeout
+                document.querySelector('main').innerHTML = `
+                    <div class="glass-panel p-xl rounded-3xl text-center animate-bounce">
+                        <span class="material-symbols-outlined text-error text-[48px] mb-md">timer_off</span>
+                        <h2 class="font-headline-md text-headline-md text-on-surface">Request Expired</h2>
+                        <p class="text-on-surface-variant mt-2">Looking for new rides...</p>
+                        <button onclick="location.reload()" class="mt-lg px-xl py-md bg-primary text-on-primary rounded-xl">BACK ONLINE</button>
+                    </div>
+                `;
+            }
+        }, 1000);
+
+        // Interaction Feedback
+        document.getElementById('accept-btn').addEventListener('click', function() {
+            clearInterval(countdown);
+            this.innerHTML = '<span class="flex items-center justify-center gap-2">CONNECTING...</span>';
+            this.classList.add('animate-pulse');
+            
+            setTimeout(() => {
+                alert('Ride Accepted! Navigating to Pickup.');
+            }, 800);
+        });
+
+        // Micro-interaction for buttons
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('touchstart', () => btn.style.transform = 'scale(0.95)');
+            btn.addEventListener('touchend', () => btn.style.transform = 'scale(1)');
+        });
+    </script>
+</body></html>

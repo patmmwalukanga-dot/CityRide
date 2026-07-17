@@ -1,0 +1,257 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>CityRide</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1b1b1b",
+                    "primary": "#000000",
+                    "surface-container-low": "#f3f3f3",
+                    "surface-container-high": "#e8e8e8",
+                    "on-primary-fixed": "#1b1b1b",
+                    "surface-bright": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#474747",
+                    "surface-tint": "#000000",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#e2e2e5",
+                    "on-tertiary-fixed": "#0b1c30",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#38485d",
+                    "on-tertiary-container": "#75859d",
+                    "background": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#1b1b1b",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-secondary-fixed": "#1a1c1e",
+                    "tertiary-fixed": "#d3e4fe",
+                    "tertiary-container": "#0b1c30",
+                    "inverse-primary": "#c6c6c6",
+                    "on-surface-variant": "#555555",
+                    "tertiary": "#000000",
+                    "tertiary-fixed-dim": "#b7c8e1",
+                    "surface-container": "#f4f4f4",
+                    "surface-dim": "#eeeeee",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#dddddd",
+                    "on-secondary-fixed-variant": "#454749",
+                    "on-primary-container": "#848484",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#e2e2e2",
+                    "on-surface": "#000000",
+                    "outline-variant": "#eeeeee",
+                    "surface-variant": "#f4f4f4",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#ffffff",
+                    "secondary": "#555555",
+                    "surface": "#ffffff",
+                    "on-background": "#000000",
+                    "on-secondary-container": "#616365",
+                    "secondary-container": "#f4f4f4",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#c6c6c9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "12px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "xs": "4px",
+                    "gutter": "16px",
+                    "margin-mobile": "24px",
+                    "sm": "8px",
+                    "unit": "4px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "action-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "action-lg": ["18px", {"lineHeight": "24px", "fontWeight": "500"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+            display: inline-block;
+            line-height: 1;
+        }
+        .user-dot-pulse {
+            animation: pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.2); opacity: 0.2; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-hidden">
+<!-- Full-screen Map Background -->
+<div class="fixed inset-0 z-0 h-full w-full bg-surface-container">
+<div class="w-full h-full relative overflow-hidden" data-location="New York City Manhattan">
+<!-- Minimalist Map Style -->
+<div class="w-full h-full bg-cover bg-center grayscale opacity-40" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCc6r1dhdGv8rztnvTVB6mp_Ft2IVOLX6v1w_iyDDLBc24XonakvuLufA3ZTufTZSFb5Vf9A9o1qaPXyfPn49MvtyPKoYb7NI_86jzERoltrnJxm9cgLuVVeZRRrKlQAaRwl2kk1YfQtD4-UKmEqNDg6BnM8u-My0SjjakVOXeWYvGHXWM3x8a3HAV49gL-pb5kGlSAyIWnMyI_FpgiJZ1JsDPWc7uwp6jnH4_zPIe4b9-AejHXoMavXJMd6e9xq4YHBkSHqTk_-O3k')"></div>
+<!-- User Location Marker -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+<div class="w-16 h-16 bg-primary/10 rounded-full user-dot-pulse absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"></div>
+<div class="w-4 h-4 bg-primary rounded-full ring-4 ring-white shadow-sm"></div>
+</div>
+<!-- Minimal Vehicle Markers -->
+<div class="absolute top-[42%] left-[38%] z-10">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">circle</span>
+</div>
+<div class="absolute top-[58%] left-[62%] z-10">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">circle</span>
+</div>
+<div class="absolute top-[65%] left-[30%] z-10">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">circle</span>
+</div>
+</div>
+</div>
+<!-- Simple Menu Trigger -->
+<header class="fixed top-6 left-6 z-50">
+<button class="bg-white rounded-full flex items-center justify-center w-12 h-12 text-on-surface shadow-sm border border-outline-variant active:scale-95 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Main Interaction Canvas -->
+<main class="relative z-20 flex flex-col items-center justify-end h-screen w-full pb-28 px-margin-mobile">
+<!-- Simplified Search & Suggestions Sheet -->
+<div class="w-full max-w-xl bg-surface rounded-[24px] shadow-lg p-6 flex flex-col gap-8 transition-all duration-500 border border-outline-variant">
+<!-- Typography: Clean & Focused -->
+<div class="space-y-1">
+<h1 class="text-headline-lg-mobile text-on-surface tracking-tight">Where are you going?</h1>
+<p class="text-body-sm text-on-surface-variant">Select a destination to begin.</p>
+</div>
+<!-- High Visibility Search Bar: Simplified -->
+<div class="relative">
+<div class="absolute left-5 top-1/2 -translate-y-1/2 pointer-events-none">
+<span class="material-symbols-outlined text-primary opacity-40">search</span>
+</div>
+<input class="w-full bg-surface-container border-none py-5 pl-14 pr-24 rounded-xl focus:ring-1 focus:ring-primary font-body-lg text-on-surface placeholder:text-on-surface-variant/40 transition-all" placeholder="Enter destination" type="text">
+<div class="absolute right-3 top-1/2 -translate-y-1/2">
+<button class="flex items-center gap-1.5 bg-primary text-on-primary px-4 py-2 rounded-lg text-label-md active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="">Later</span>
+</button>
+</div>
+</div>
+<!-- Quick Destinations: Linear & Clean -->
+<div class="flex flex-col gap-1">
+<button class="flex items-center gap-4 py-3 hover:bg-surface-container-low transition-colors px-2 rounded-lg">
+<div class="w-10 h-10 bg-surface-variant flex items-center justify-center rounded-lg text-on-surface">
+<span class="material-symbols-outlined text-[20px]">home</span>
+</div>
+<div class="flex-1 text-left">
+<p class="font-label-md text-on-surface">Home</p>
+<p class="text-[12px] text-on-surface-variant">742 Evergreen Terrace</p>
+</div>
+<span class="text-label-md text-on-surface-variant">12 min</span>
+</button>
+<button class="flex items-center gap-4 py-3 hover:bg-surface-container-low transition-colors px-2 rounded-lg">
+<div class="w-10 h-10 bg-surface-variant flex items-center justify-center rounded-lg text-on-surface">
+<span class="material-symbols-outlined text-[20px]">work</span>
+</div>
+<div class="flex-1 text-left">
+<p class="font-label-md text-on-surface">Work</p>
+<p class="text-[12px] text-on-surface-variant">One World Trade Center</p>
+</div>
+<span class="text-label-md text-on-surface-variant">25 min</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation: Minimal -->
+<nav class="fixed bottom-0 w-full z-50 bg-white border-t border-outline-variant flex justify-around items-center px-6 pt-4 pb-8 md:hidden">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">explore</span>
+<span class="text-[10px] font-medium uppercase tracking-wider">Ride</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] font-medium uppercase tracking-wider">Activity</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant opacity-60">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium uppercase tracking-wider">Profile</span>
+</button>
+</nav>
+<!-- Desktop Sidebar: Refined -->
+<aside class="hidden md:flex fixed top-1/2 -translate-y-1/2 right-8 z-50 flex-col gap-2">
+<div class="bg-white border border-outline-variant p-2 rounded-2xl shadow-sm flex flex-col gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-xl bg-primary text-white transition-all">
+<span class="material-symbols-outlined text-[20px]">explore</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl text-on-surface-variant hover:bg-surface-variant transition-all">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-xl text-on-surface-variant hover:bg-surface-variant transition-all">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</button>
+</div>
+</aside>
+<!-- Simplified Rating Modal (Hidden by default, for structure reference) -->
+<div class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/20 backdrop-blur-sm" id="ratingModal">
+<div class="w-full max-w-sm bg-surface rounded-[24px] p-8 border border-outline-variant shadow-xl text-center space-y-6">
+<div class="space-y-2">
+<h2 class="text-headline-md">Arrived at Home</h2>
+<p class="text-body-sm text-on-surface-variant">How was your journey today?</p>
+</div>
+<div class="flex justify-center gap-2">
+<span class="material-symbols-outlined text-primary text-[32px] cursor-pointer">star</span>
+<span class="material-symbols-outlined text-primary text-[32px] cursor-pointer">star</span>
+<span class="material-symbols-outlined text-primary text-[32px] cursor-pointer">star</span>
+<span class="material-symbols-outlined text-primary text-[32px] cursor-pointer">star</span>
+<span class="material-symbols-outlined text-outline text-[32px] cursor-pointer">star</span>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-action-lg active:scale-95 transition-all">
+            Done
+        </button>
+</div>
+</div>
+<script>
+    // Interaction focus simulation
+    const searchInput = document.querySelector('input');
+    const container = searchInput.closest('.max-w-xl');
+
+    searchInput.addEventListener('focus', () => {
+        container.classList.add('-translate-y-8');
+        container.style.borderColor = 'black';
+    });
+
+    searchInput.addEventListener('blur', () => {
+        container.classList.remove('-translate-y-8');
+        container.style.borderColor = '';
+    });
+</script>
+
+
+</body></html>

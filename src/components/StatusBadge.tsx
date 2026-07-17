@@ -9,7 +9,7 @@ const statusColors: Record<BookingStatus, string> = {
   accepted: theme.colors.primary,
   in_progress: "#1565C0",
   completed: theme.colors.success,
-  cancelled: theme.colors.danger,
+  cancelled: theme.colors.error,
 };
 
 export function StatusBadge({ status }: { status: BookingStatus }) {
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: theme.radius.sm,
   },
   text: {
-    color: theme.colors.white,
+    color: theme.colors.onPrimary,
     fontSize: theme.fontSize.sm,
     fontWeight: "600",
   },

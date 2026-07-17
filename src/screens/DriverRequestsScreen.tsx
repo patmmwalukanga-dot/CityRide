@@ -20,10 +20,9 @@ export function DriverRequestsScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Top app bar */}
       <View style={[styles.appBar, { paddingTop: insets.top }]}>
         <TouchableOpacity style={styles.menuBtn} activeOpacity={0.8}>
-          <MaterialIcons name="menu" size={24} color={theme.colors.text} />
+          <MaterialIcons name="menu" size={24} color={theme.colors.onSurface} />
         </TouchableOpacity>
         <View style={styles.titlePill}>
           <Text style={styles.titleText}>{t("driver.title")}</Text>
@@ -64,7 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 16,
     paddingBottom: theme.spacing(1),
-    backgroundColor: GLASS,
+    backgroundColor: "rgba(255, 255, 255, 0.85)",
   },
   menuBtn: {
     width: 48,
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: theme.fontSize.md,
     fontWeight: "600",
-    color: theme.colors.text,
+    color: theme.colors.onSurface,
   },
   spacer: {
     width: 48,
@@ -107,7 +106,7 @@ const styles = StyleSheet.create({
     paddingBottom: theme.spacing(5),
   },
   empty: {
-    color: theme.colors.textMuted,
+    color: theme.colors.onSurfaceVariant,
     fontSize: theme.fontSize.md,
   },
 });

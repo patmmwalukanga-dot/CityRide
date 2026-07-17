@@ -57,7 +57,7 @@ export function Button({
 const styles = StyleSheet.create({
   container: {
     height: 48,
-    borderRadius: theme.radius.md,
+    borderRadius: theme.radius.lg,
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: theme.spacing(2),
@@ -65,5 +65,6 @@ const styles = StyleSheet.create({
   label: {
     fontSize: theme.fontSize.md,
     fontWeight: "600",
+    color: theme.colors.onPrimary,
   },
 });
