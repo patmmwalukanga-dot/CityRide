@@ -79,10 +79,12 @@ export const theme = {
     full: 9999,
   },
   fontSize: {
+    xs: 11,
     sm: 13,
     md: 15,
     lg: 18,
     xl: 24,
+    "2xl": 28,
   },
   fontFamily: {
     default: "Inter",
