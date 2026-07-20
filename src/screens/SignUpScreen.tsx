@@ -7,15 +7,10 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Linking,
-  ImageBackground,
 } from "react-native";
 import { useRouter } from "expo-router";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { theme } from "../styles/theme";
 import type { UserRole } from "../types";
-
-const BACKGROUND_IMAGE =
-  "https://lh3.googleusercontent.com/aida/AP1WRLs8D-BHDyE74Kotu9bgYpQYYnEE2wqy31UV3jd0hnpqVhMppyX5Bad0lgU2VOs_kAQOujA-UGOm3_7rPKyfC7mJwgsCyprp-p82S1f1oB6_qbbb073Ukafe7egIQFANkERHZe3tPWlw_unRjzR54OS7Hfhnl6Hnol-MA4ZcwHxCm0_idm3iJ0SnnXZSYD6eAArWMzcgSsrmiKeWpaYszePcQFt4prJeJd_QGpfchbAZGvCaAoQua8M-e2pG";
 
 export function SignUpScreen() {
   const router = useRouter();
@@ -57,163 +52,152 @@ export function SignUpScreen() {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={{ uri: BACKGROUND_IMAGE }}
-        style={styles.backgroundImage}
-        resizeMode="cover"
-      >
-        {/* Dark overlay */}
-        <View style={styles.backgroundOverlay} />
+      <SafeAreaView style={styles.safeArea}>
+        {/* Back Button */}
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => router.back()}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.backArrow}>←</Text>
+        </TouchableOpacity>
 
-        {/* Decorative circle */}
-        <View style={styles.decorativeCircle} />
-
-        <SafeAreaView style={styles.safeArea}>
-          {/* Main Content */}
-          <Animated.View
-            style={[
-              styles.content,
-              {
-                opacity: fadeAnim,
-                transform: [{ translateY }],
-              },
-            ]}
-          >
-            {/* Brand Logo */}
-            <View style={styles.brandSection}>
-              <View style={styles.brandIconContainer}>
-                <MaterialCommunityIcons
-                  name="navigation"
-                  size={20}
-                  color="#FFFFFF"
-                />
-              </View>
-              <Text style={styles.brandName}>CityRide</Text>
+        {/* Main Content */}
+        <Animated.View
+          style={[
+            styles.content,
+            {
+              opacity: fadeAnim,
+              transform: [{ translateY }],
+            },
+          ]}
+        >
+          {/* Brand Logo */}
+          <View style={styles.brandSection}>
+            <View style={styles.brandIconContainer}>
+              <Text style={styles.brandIcon}>▲</Text>
             </View>
+            <Text style={styles.brandName}>CityRide</Text>
+          </View>
 
-            {/* Headline Section */}
-            <View style={styles.headlineSection}>
-              <Text style={styles.headlineTitle}>Create your account</Text>
-              <Text style={styles.headlineSubtitle}>
-                Start your journey with CityRide today.
-              </Text>
-            </View>
-
-            {/* Role Selection */}
-            <View style={styles.roleContainer}>
-              <Text style={styles.roleLabel}>I want to sign up as</Text>
-              <View style={styles.roleButtons}>
-                <TouchableOpacity
-                  style={[
-                    styles.roleButton,
-                    role === "passenger" && styles.roleButtonActive,
-                  ]}
-                  onPress={() => setRole("passenger")}
-                  activeOpacity={0.8}
-                >
-                  <Text style={styles.roleButtonIcon}>👤</Text>
-                  <Text
-                    style={[
-                      styles.roleButtonTitle,
-                      role === "passenger" && styles.roleButtonTitleActive,
-                    ]}
-                  >
-                    Passenger
-                  </Text>
-                  <Text
-                    style={[
-                      styles.roleButtonDesc,
-                      role === "passenger" && styles.roleButtonDescActive,
-                    ]}
-                  >
-                    Book minibus rides
-                  </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={[
-                    styles.roleButton,
-                    role === "driver" && styles.roleButtonActive,
-                  ]}
-                  onPress={() => setRole("driver")}
-                  activeOpacity={0.8}
-                >
-                  <Text style={styles.roleButtonIcon}>🚗</Text>
-                  <Text
-                    style={[
-                      styles.roleButtonTitle,
-                      role === "driver" && styles.roleButtonTitleActive,
-                    ]}
-                  >
-                    Driver
-                  </Text>
-                  <Text
-                    style={[
-                      styles.roleButtonDesc,
-                      role === "driver" && styles.roleButtonDescActive,
-                    ]}
-                  >
-                    Offer minibus rides
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Animated.View>
-
-          {/* Buttons Section */}
-          <Animated.View
-            style={[
-              styles.buttonsSection,
-              { opacity: buttonsFade },
-            ]}
-          >
-            {/* Continue with Email */}
-            <TouchableOpacity
-              style={styles.emailButton}
-              onPress={handleEmailSignUp}
-              activeOpacity={0.9}
-            >
-              <MaterialCommunityIcons
-                name="email-outline"
-                size={20}
-                color="#FFFFFF"
-              />
-              <Text style={styles.emailButtonText}>
-                Continue with Email
-              </Text>
-            </TouchableOpacity>
-
-            {/* Terms & Privacy */}
-            <Text style={styles.termsText}>
-              By signing up, you agree to our{" "}
-              <Text
-                style={styles.termsLink}
-                onPress={() => Linking.openURL("#")}
-              >
-                Terms of Service
-              </Text>{" "}
-              and{" "}
-              <Text
-                style={styles.termsLink}
-                onPress={() => Linking.openURL("#")}
-              >
-                Privacy Policy
-              </Text>
-              .
+          {/* Headline Section */}
+          <View style={styles.headlineSection}>
+            <Text style={styles.headlineTitle}>Create your account</Text>
+            <Text style={styles.headlineSubtitle}>
+              Start your journey with CityRide today.
             </Text>
+          </View>
 
-            {/* Sign In Link */}
-            <TouchableOpacity
-              style={styles.signInLink}
-              onPress={() => router.push("/login")}
+          {/* Role Selection */}
+          <View style={styles.roleContainer}>
+            <Text style={styles.roleLabel}>I want to sign up as</Text>
+            <View style={styles.roleButtons}>
+              <TouchableOpacity
+                style={[
+                  styles.roleButton,
+                  role === "passenger" && styles.roleButtonActive,
+                ]}
+                onPress={() => setRole("passenger")}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.roleButtonIcon}>👤</Text>
+                <Text
+                  style={[
+                    styles.roleButtonTitle,
+                    role === "passenger" && styles.roleButtonTitleActive,
+                  ]}
+                >
+                  Passenger
+                </Text>
+                <Text
+                  style={[
+                    styles.roleButtonDesc,
+                    role === "passenger" && styles.roleButtonDescActive,
+                  ]}
+                >
+                  Book minibus rides
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[
+                  styles.roleButton,
+                  role === "driver" && styles.roleButtonActive,
+                ]}
+                onPress={() => setRole("driver")}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.roleButtonIcon}>🚗</Text>
+                <Text
+                  style={[
+                    styles.roleButtonTitle,
+                    role === "driver" && styles.roleButtonTitleActive,
+                  ]}
+                >
+                  Driver
+                </Text>
+                <Text
+                  style={[
+                    styles.roleButtonDesc,
+                    role === "driver" && styles.roleButtonDescActive,
+                  ]}
+                >
+                  Offer minibus rides
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Animated.View>
+
+        {/* Buttons Section */}
+        <Animated.View
+          style={[
+            styles.buttonsSection,
+            { opacity: buttonsFade },
+          ]}
+        >
+          {/* Continue with Email */}
+          <TouchableOpacity
+            style={styles.emailButton}
+            onPress={handleEmailSignUp}
+            activeOpacity={0.9}
+          >
+            <Text style={styles.emailIcon}>✉</Text>
+            <Text style={styles.emailButtonText}>
+              Continue as {role === "passenger" ? "Passenger" : "Driver"}
+            </Text>
+          </TouchableOpacity>
+
+          {/* Terms & Privacy */}
+          <Text style={styles.termsText}>
+            By signing up, you agree to our{" "}
+            <Text
+              style={styles.termsLink}
+              onPress={() => Linking.openURL("#")}
             >
-              <Text style={styles.signInText}>
-                Already have an account?{" "}
-                <Text style={styles.signInHighlight}>Sign In</Text>
-              </Text>
-            </TouchableOpacity>
-          </Animated.View>
-        </SafeAreaView>
-      </ImageBackground>
+              Terms of Service
+            </Text>{" "}
+            and{" "}
+            <Text
+              style={styles.termsLink}
+              onPress={() => Linking.openURL("#")}
+            >
+              Privacy Policy
+            </Text>
+            .
+          </Text>
+
+          {/* Sign In Link */}
+          <TouchableOpacity
+            style={styles.signInLink}
+            onPress={() => router.push("/login")}
+          >
+            <Text style={styles.signInText}>
+              Already have an account?{" "}
+              <Text style={styles.signInHighlight}>Sign In</Text>
+            </Text>
+          </TouchableOpacity>
+        </Animated.View>
+      </SafeAreaView>
     </View>
   );
 }
@@ -221,49 +205,30 @@ export function SignUpScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000000",
-  },
-  backgroundImage: {
-    flex: 1,
-    width: "100%",
-  },
-  backgroundOverlay: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: "rgba(0,0,0,0.7)",
-  },
-  decorativeCircle: {
-    position: "absolute",
-    top: -80,
-    right: -80,
-    width: 240,
-    height: 240,
-    borderRadius: 120,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.15)",
-    opacity: 0.3,
+    backgroundColor: theme.colors.background,
   },
   safeArea: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 24,
   },
   backButton: {
     width: 44,
     height: 44,
-    borderRadius: 9999,
-    backgroundColor: "rgba(249,249,249,0.8)",
+    borderRadius: theme.radius.full,
+    backgroundColor: theme.colors.surfaceContainer,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 12,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 20 },
-    shadowOpacity: 0.08,
-    shadowRadius: 40,
-    elevation: 6,
+  },
+  backArrow: {
+    fontSize: 22,
+    color: theme.colors.text,
+    fontWeight: "300",
   },
   content: {
     flex: 1,
     justifyContent: "center",
-    paddingBottom: 32,
+    paddingBottom: 24,
   },
   brandSection: {
     flexDirection: "row",
@@ -274,15 +239,19 @@ const styles = StyleSheet.create({
   brandIconContainer: {
     width: 36,
     height: 36,
-    borderRadius: 8,
-    backgroundColor: "#000000",
+    borderRadius: theme.radius.sm,
+    backgroundColor: theme.colors.primary,
     alignItems: "center",
     justifyContent: "center",
+  },
+  brandIcon: {
+    fontSize: 18,
+    color: theme.colors.white,
   },
   brandName: {
     fontSize: 20,
     fontWeight: "700",
-    color: "#FFFFFF",
+    color: theme.colors.primary,
     letterSpacing: -0.3,
   },
   headlineSection: {
@@ -292,22 +261,21 @@ const styles = StyleSheet.create({
   headlineTitle: {
     fontSize: 28,
     fontWeight: "700",
-    color: "#FFFFFF",
+    color: theme.colors.text,
     letterSpacing: -0.5,
   },
   headlineSubtitle: {
     fontSize: 16,
-    color: "rgba(255,255,255,0.6)",
+    color: theme.colors.textMuted,
     lineHeight: 22,
   },
   roleContainer: {
     gap: 12,
-    marginBottom: 8,
   },
   roleLabel: {
     fontSize: 13,
     fontWeight: "600",
-    color: "#FFFFFF",
+    color: theme.colors.text,
     letterSpacing: 0.3,
   },
   roleButtons: {
@@ -316,14 +284,14 @@ const styles = StyleSheet.create({
   roleButton: {
     paddingVertical: 16,
     paddingHorizontal: 16,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.2)",
-    backgroundColor: "rgba(255,255,255,0.1)",
+    borderRadius: theme.radius.md,
+    borderWidth: 1.5,
+    borderColor: theme.colors.border,
+    backgroundColor: theme.colors.surface,
   },
   roleButtonActive: {
-    borderColor: "#FFFFFF",
-    backgroundColor: "rgba(255,255,255,0.15)",
+    borderColor: theme.colors.primary,
+    backgroundColor: theme.colors.surfaceVariant,
   },
   roleButtonIcon: {
     fontSize: 24,
@@ -332,22 +300,21 @@ const styles = StyleSheet.create({
   roleButtonTitle: {
     fontSize: 16,
     fontWeight: "600",
-    color: "rgba(255,255,255,0.8)",
+    color: theme.colors.text,
   },
   roleButtonTitleActive: {
-    color: "#FFFFFF",
+    color: theme.colors.primary,
   },
   roleButtonDesc: {
     fontSize: 13,
-    color: "rgba(255,255,255,0.5)",
+    color: theme.colors.textMuted,
     marginTop: 2,
   },
   roleButtonDescActive: {
-    color: "rgba(255,255,255,0.7)",
+    color: theme.colors.primary,
   },
   buttonsSection: {
     paddingBottom: 40,
-    paddingTop: 16,
     gap: 20,
   },
   emailButton: {
@@ -355,26 +322,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 10,
+    backgroundColor: theme.colors.primary,
     paddingVertical: 16,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.2)",
-    backgroundColor: "rgba(255,255,255,0.08)",
+    borderRadius: theme.radius.md,
+    shadowColor: theme.colors.primary,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 6,
+  },
+  emailIcon: {
+    fontSize: 18,
+    color: theme.colors.white,
   },
   emailButtonText: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#FFFFFF",
+    color: theme.colors.white,
   },
   termsText: {
     fontSize: 13,
-    color: "rgba(255,255,255,0.5)",
+    color: theme.colors.textMuted,
     textAlign: "center",
     lineHeight: 18,
     paddingHorizontal: 8,
   },
   termsLink: {
-    color: "#FFFFFF",
+    color: theme.colors.secondary,
     fontWeight: "600",
     textDecorationLine: "underline",
   },
@@ -384,10 +358,10 @@ const styles = StyleSheet.create({
   },
   signInText: {
     fontSize: 14,
-    color: "rgba(255,255,255,0.6)",
+    color: theme.colors.textMuted,
   },
   signInHighlight: {
-    color: "#FFFFFF",
+    color: theme.colors.primary,
     fontWeight: "600",
   },
 });

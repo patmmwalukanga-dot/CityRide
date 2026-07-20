@@ -6,7 +6,7 @@ import {
   Animated,
   Dimensions,
 } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { theme } from "../styles/theme";
 
 const { width, height } = Dimensions.get("window");
 
@@ -22,12 +22,12 @@ export function SplashScreen() {
     Animated.parallel([
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 1200,
+        duration: 1000,
         useNativeDriver: true,
       }),
       Animated.timing(translateY, {
         toValue: 0,
-        duration: 1200,
+        duration: 1000,
         useNativeDriver: true,
       }),
     ]).start();
@@ -36,7 +36,7 @@ export function SplashScreen() {
     Animated.timing(bottomFade, {
       toValue: 1,
       duration: 800,
-      delay: 800,
+      delay: 600,
       useNativeDriver: true,
     }).start();
 
@@ -60,18 +60,20 @@ export function SplashScreen() {
     return () => shimmerLoop.stop();
   }, []);
 
-  const shimmerTranslateX = shimmerAnim.interpolate({
-    inputRange: [0, 1],
-    outputRange: [-100, 200],
+  const shimmerOpacity = shimmerAnim.interpolate({
+    inputRange: [0, 0.5, 1],
+    outputRange: [0.6, 1, 0.6],
   });
 
   return (
     <View style={styles.container}>
-      {/* Background with dark overlay */}
-      <View style={styles.backgroundContainer}>
-        <View style={styles.backgroundGradient} />
-        <View style={styles.blurOverlay} />
-      </View>
+      {/* Background gradient effect */}
+      <View style={styles.backgroundTop} />
+      <View style={styles.backgroundBottom} />
+
+      {/* Decorative circles */}
+      <View style={styles.decorativeCircle1} />
+      <View style={styles.decorativeCircle2} />
 
       {/* Main Content */}
       <Animated.View
@@ -85,31 +87,20 @@ export function SplashScreen() {
       >
         {/* Logo Section */}
         <View style={styles.logoSection}>
-          {/* Icon in Rounded Square */}
+          {/* Navigation Icon in Rounded Square */}
           <View style={styles.iconContainer}>
             <View style={styles.glowPulse} />
-            <MaterialCommunityIcons
-              name="navigation"
-              size={48}
-              color="#FFFFFF"
-            />
+            <Text style={styles.iconText}>▲</Text>
           </View>
 
           {/* Title */}
           <View style={styles.titleContainer}>
             <Text style={styles.title}>CityRide</Text>
-            <View style={styles.subtitleWrapper}>
-              <Text style={styles.subtitle}>PREMIUM MOBILITY</Text>
-              {/* Shimmer overlay */}
-              <Animated.View
-                style={[
-                  styles.shimmerOverlay,
-                  {
-                    transform: [{ translateX: shimmerTranslateX }],
-                  },
-                ]}
-              />
-            </View>
+            <Animated.Text
+              style={[styles.subtitle, { opacity: shimmerOpacity }]}
+            >
+              PREMIUM MOBILITY
+            </Animated.Text>
           </View>
         </View>
       </Animated.View>
@@ -121,9 +112,9 @@ export function SplashScreen() {
           { opacity: bottomFade },
         ]}
       >
-        <View style={styles.dot} />
-        <View style={styles.line} />
-        <View style={styles.dot} />
+        <View style={[styles.dot, { backgroundColor: theme.colors.secondary }]} />
+        <View style={[styles.line, { backgroundColor: theme.colors.primary }]} />
+        <View style={[styles.dot, { backgroundColor: theme.colors.secondary }]} />
       </Animated.View>
     </View>
   );
@@ -132,18 +123,45 @@ export function SplashScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000000",
+    backgroundColor: theme.colors.background,
   },
-  backgroundContainer: {
-    ...StyleSheet.absoluteFill,
+  backgroundTop: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    height: height * 0.5,
+    backgroundColor: theme.colors.primary,
+    borderBottomLeftRadius: 60,
+    borderBottomRightRadius: 60,
   },
-  backgroundGradient: {
-    flex: 1,
-    backgroundColor: "#000000",
+  backgroundBottom: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: height * 0.3,
+    backgroundColor: theme.colors.surfaceVariant,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
   },
-  blurOverlay: {
-    ...StyleSheet.absoluteFill,
-    backgroundColor: "rgba(0,0,0,0.6)",
+  decorativeCircle1: {
+    position: "absolute",
+    top: -60,
+    right: -60,
+    width: 200,
+    height: 200,
+    borderRadius: 100,
+    backgroundColor: "rgba(255,255,255,0.08)",
+  },
+  decorativeCircle2: {
+    position: "absolute",
+    bottom: height * 0.2,
+    left: -80,
+    width: 180,
+    height: 180,
+    borderRadius: 90,
+    backgroundColor: "rgba(13, 71, 161, 0.05)",
   },
   content: {
     flex: 1,
@@ -158,22 +176,24 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: 80,
     height: 80,
-    borderRadius: 16,
-    backgroundColor: "#000000",
+    borderRadius: 20,
+    backgroundColor: theme.colors.white,
     alignItems: "center",
     justifyContent: "center",
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.1)",
-    shadowColor: "#FFFFFF",
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.2,
-    shadowRadius: 40,
+    shadowColor: theme.colors.primary,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.3,
+    shadowRadius: 24,
     elevation: 12,
   },
   glowPulse: {
     ...StyleSheet.absoluteFill,
-    borderRadius: 16,
-    backgroundColor: "rgba(255,255,255,0.1)",
+    borderRadius: 20,
+    backgroundColor: "rgba(13, 71, 161, 0.08)",
+  },
+  iconText: {
+    fontSize: 48,
+    color: theme.colors.primary,
   },
   titleContainer: {
     alignItems: "center",
@@ -182,33 +202,15 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 36,
     fontWeight: "800",
-    color: "#FFFFFF",
+    color: theme.colors.text,
     letterSpacing: -0.5,
-    textShadowColor: "rgba(0,0,0,0.3)",
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
-  },
-  subtitleWrapper: {
-    position: "relative",
-    overflow: "hidden",
   },
   subtitle: {
     fontSize: 12,
     fontWeight: "600",
-    color: "rgba(255,255,255,0.6)",
+    color: theme.colors.text,
     letterSpacing: 4.8,
     textTransform: "uppercase",
-  },
-  shimmerOverlay: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    width: "100%",
-    backgroundColor: "transparent",
-    // Simulated shimmer via gradient-like opacity
-    opacity: 0.3,
   },
   bottomDecoration: {
     position: "absolute",
@@ -221,14 +223,13 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   dot: {
-    width: 4,
-    height: 4,
-    borderRadius: 2,
-    backgroundColor: "rgba(255,255,255,0.2)",
+    width: 6,
+    height: 6,
+    borderRadius: 3,
   },
   line: {
-    width: 32,
-    height: 1,
-    backgroundColor: "rgba(255,255,255,0.4)",
+    width: 40,
+    height: 2,
+    borderRadius: 1,
   },
 });
